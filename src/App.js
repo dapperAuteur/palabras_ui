@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import shuffle from 'shuffle-array';
 import FourLetterWord from './Components/FourLetterWord';
-import Palabra from './Components/Palabra';
-import PrefixRootSuffix from './Components/PrefixRootSuffix';
+import Verbo from './Components/Verbo';
+import PrefixSuffixRoot from './Components/PrefixSuffixRoot';
+import * as authCalls from './Actions/index';
+import * as apiCalls from './Actions/api';
 import './App.css';
 
 class App extends Component {
@@ -9,19 +12,43 @@ class App extends Component {
     super(props);
     this.state = {
       fourLetterWord: {},
+      fourLetterWords: [],
       game: {},
-      palabra: {},
-      prefixRootSuffix: {},
-      user: {}
+      prefixSuffixRoot: {},
+      prefixSuffixRoots: [],
+      verbo: {},
+      verbos: [],
+      user: {},
     }
   }
+
+  componentWillMount(){
+    this.loadWords();
+  }
+
+  async loadWords(){
+    let verbos = await apiCalls.getWords("verbos");
+    let prefixSuffixRoots = await apiCalls.getWords("prefixSuffixRoots");
+
+    let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
+    let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+
+    this.setState({
+      prefixSuffixRoot: prefixSuffixRoot,
+      prefixSuffixRoots: prefixSuffixRoots,
+      verbos: verbos,
+      verbo: verbo
+    });
+    console.log(verbo, verbos);
+  }
+
   render() {
     return (
       <div className="App">
-        <h2>Palabras</h2>
-        <Palabra palabra={ this.state.palabra }/>
-        <PrefixRootSuffix prefixRootSuffix={ this.state.prefixRootSuffix } />
-        <FourLetterWord fourLetterWord={ this.state.fourLetterWord }/>
+        <h2>Verbos</h2>
+        <Verbo verbo={ this.state.verbo } />
+        <PrefixSuffixRoot prefixSuffixRoot={ this.state.prefixSuffixRoot } />
+        <FourLetterWord fourLetterWord={ this.state.fourLetterWord } />
       </div>
     );
   }
