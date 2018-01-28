@@ -23,13 +23,13 @@ class App extends Component {
   }
 
   componentWillMount(){
-    this.loadRandomWords();
+    this.loadRandomPalabras();
   }
 
-  async loadRandomWords(){
-    let fourLetterWords = await apiCalls.getWords("fourLetterWords");
-    let prefixSuffixRoots = await apiCalls.getWords("prefixSuffixRoots");
-    let verbos = await apiCalls.getWords("verbos");
+  async loadRandomPalabras(){
+    let fourLetterWords = await apiCalls.getPalabras("fourLetterWords");
+    let prefixSuffixRoots = await apiCalls.getPalabras("prefixSuffixRoots");
+    let verbos = await apiCalls.getPalabras("verbos");
 
 
     let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
@@ -46,15 +46,22 @@ class App extends Component {
     });
   }
 
-  async loadPalabra(p = "prefixSuffixRoots", p_id = "5a6d123f4f90e60fe36db2d3"){
-    let palabra = await apiCalls.getPalabra(p, p_id);
-    console.log(palabra);
+  async loadPalabra(p = "prefixSuffixRoots/", pId = "5a6d123f4f90e60fe36db2d3"){
+    let palabra = await apiCalls.getPalabra(p, pId);
   }
 
+  async addPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
+    let newPalabra = await apiCalls.createPalabra(p, pObj);
+  }
 
+  async updatePalabra(p = "verbos/", pObj = { _id: "", spanish: "asdf" }) {
+    let updatedPalabra = await apiCalls.updatePalabra(p, pObj);
+    let params = p.slice(0, -1);
+    const palabras = this.state.params.map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
+    this.setState({ palabras })
+  }
 
   render() {
-    this.loadPalabra();
     return (
       <div className="App">
         <h2>Verbos</h2>
