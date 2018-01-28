@@ -2,7 +2,7 @@ import React from 'react';
 
 const FourLetterWord = (props) => {
   let { fourLetterWord } = { ...props };
-  fourLetterWord.word = "wins";
+  
   return (
     <h1>Random Four Letter Word: { fourLetterWord.word }</h1>
   )

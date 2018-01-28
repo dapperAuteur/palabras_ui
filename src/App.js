@@ -27,15 +27,21 @@ class App extends Component {
   }
 
   async loadWords(){
-    let verbos = await apiCalls.getWords("verbos");
+    let fourLetterWords = await apiCalls.getWords("fourLetterWords");
     let prefixSuffixRoots = await apiCalls.getWords("prefixSuffixRoots");
+    let verbos = await apiCalls.getWords("verbos");
 
-    let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
+
+    let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
     let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+    let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
+
 
     this.setState({
-      prefixSuffixRoot: prefixSuffixRoot,
-      prefixSuffixRoots: prefixSuffixRoots,
+      fourLetterWord,
+      fourLetterWords,
+      prefixSuffixRoot,
+      prefixSuffixRoots,
       verbos: verbos,
       verbo: verbo
     });
