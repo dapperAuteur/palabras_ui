@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import shuffle from 'shuffle-array';
-import FourLetterWord from './Components/FourLetterWord';
-import Verbo from './Components/Verbo';
-import PrefixSuffixRoot from './Components/PrefixSuffixRoot';
 import * as authCalls from './Actions/index';
 import * as apiCalls from './Actions/api';
 import './App.css';
@@ -64,10 +61,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h2>Verbos</h2>
-        <Verbo verbo={ this.state.verbo } />
-        <PrefixSuffixRoot prefixSuffixRoot={ this.state.prefixSuffixRoot } />
-        <FourLetterWord fourLetterWord={ this.state.fourLetterWord } />
+        <h1>Palabras</h1>
+        <h2>Random Four Letter Word: { this.state.fourLetterWord.word }</h2>
+        <h2>Random Prefix Root or Suffix: { this.state.prefixSuffixRoot.word }</h2>
+        <h2>Random Spanish Verb: { this.state.verbo.spanish }</h2>
       </div>
     );
   }
