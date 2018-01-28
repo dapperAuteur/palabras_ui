@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Verbo = (props) => {
+const DetailsVerbo = (props) => {
   let { verbo } = { ...props };
 
   return (
@@ -16,4 +16,4 @@ const Verbo = (props) => {
   )
 }
 
-export default Verbo;
+export default DetailsVerbo;

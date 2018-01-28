@@ -86,7 +86,7 @@ export async function updatePalabra(p, pObj) {
     headers: new Headers({
       'Content-Type': 'application/json'
     }),
-    body: JSON.stringify({ pObj })
+    body: JSON.stringify({ ...pObj })
   })
     .then(resp => {
       if (!resp.ok) {

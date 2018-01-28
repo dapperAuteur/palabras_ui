@@ -34,9 +34,9 @@ class FormFourLetterWords extends Component {
       <div className='word-form-container'>
         <form className='word-form' onSubmit={ this.handleSubmit }>
           <div className='word-form-line'>
-            <label htmlFor='four-letter-word-title-input'>Word</label>
+            <label htmlFor='four-letter-word-input'>Word</label>
             <input
-              id='four-letter-word-title-input'
+              id='four-letter-word-input'
               key='word'
               name='word'
               type='text'
@@ -53,7 +53,7 @@ class FormFourLetterWords extends Component {
               name='tongue'
               type='text'
               value={ tongue }
-              size={ 10 }
+              size={ 20 }
               autoComplete="off"
               onChange={ this.handleChange } />
           </div>
@@ -75,6 +75,7 @@ FormFourLetterWords.propTypes = {
   word: PropTypes.string.isRequired,
   tongue: PropTypes.string
 }
+
 FormFourLetterWords.defaultProps = {
   onSave() {},
   p: 'fourLetterWords/',

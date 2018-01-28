@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FourLetterWord = (props) => {
+const DetailsFourLetterWord = (props) => {
   let { fourLetterWord } = { ...props };
 
   return (
@@ -12,4 +12,4 @@ const FourLetterWord = (props) => {
   )
 }
 
-export default FourLetterWord;
+export default DetailsFourLetterWord;

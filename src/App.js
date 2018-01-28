@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import shuffle from 'shuffle-array';
 import * as authCalls from './Actions/index';
 import * as apiCalls from './Actions/api';
-import FormFourLetterWord from './Components/FourLetterWords/FormFourLetterWord';
 import './App.css';
 
 class App extends Component {
@@ -74,7 +73,6 @@ class App extends Component {
         <h2>Random Four Letter Word: { this.state.fourLetterWord.word }</h2>
         <h2>Random Prefix Root or Suffix: { this.state.prefixSuffixRoot.word }</h2>
         <h2>Random Spanish Verb: { this.state.verbo.spanish }</h2>
-        <FormFourLetterWord onSave={ this.handleSave }/>
       </div>
     );
   }

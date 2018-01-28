@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PrefixSuffixRoot = (props) => {
+const DetailsPrefixSuffixRoot = (props) => {
   let { prefixSuffixRoot } = { ...props };
 
   return (
@@ -13,4 +13,4 @@ const PrefixSuffixRoot = (props) => {
   )
 }
 
-export default PrefixSuffixRoot;
+export default DetailsPrefixSuffixRoot;
