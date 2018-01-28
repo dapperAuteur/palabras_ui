@@ -45,6 +45,8 @@ class App extends Component {
 
   async loadPalabra(p = "prefixSuffixRoots/", pId = "5a6d123f4f90e60fe36db2d3"){
     let palabra = await apiCalls.getPalabra(p, pId);
+    // let pal = p.slice(0, -1);
+    // this.setState({ `${pal}`: palabra })
   }
 
   async addPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
@@ -53,10 +55,11 @@ class App extends Component {
     console.log(newPalabra);
   }
 
+//line 62 may be broken
   async updatePalabra(p = "verbos/", pObj = { _id: "", spanish: "asdf" }) {
     let updatedPalabra = await apiCalls.updatePalabra(p, pObj);
     let params = p.slice(0, -1);
-    const palabras = this.state.params.map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
+    const palabras = this.state[params].map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
     this.setState({ palabras })
   }
 

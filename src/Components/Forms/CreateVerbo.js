@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../CSS/Form.css';
 
-class FormVerbo extends Component {
+class CreateVerbo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -152,7 +152,7 @@ class FormVerbo extends Component {
   }
 }
 
-FormVerbo.propTypes = {
+CreateVerbo.propTypes = {
   p: PropTypes.string.isRequired,
   spanish: PropTypes.string.isRequired,
   english: PropTypes.string,
@@ -164,11 +164,11 @@ FormVerbo.propTypes = {
   grupo: PropTypes.number
 }
 
-FormVerbo.defaultProps = {
+CreateVerbo.defaultProps = {
   onSave() {},
   p: 'verbos/',
   reflexive: false,
   irregular: false
 }
 
-export default FormVerbo;
+export default CreateVerbo;

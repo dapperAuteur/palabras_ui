@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../CSS/Form.css';
 
-class FormFourLetterWords extends Component {
+class CreateFourLetterWords extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -70,16 +70,16 @@ class FormFourLetterWords extends Component {
   }
 }
 
-FormFourLetterWords.propTypes = {
+CreateFourLetterWords.propTypes = {
   p: PropTypes.string.isRequired,
   word: PropTypes.string.isRequired,
   tongue: PropTypes.string
 }
 
-FormFourLetterWords.defaultProps = {
+CreateFourLetterWords.defaultProps = {
   onSave() {},
   p: 'fourLetterWords/',
   tongue: "English"
 }
 
-export default FormFourLetterWords;
+export default CreateFourLetterWords;

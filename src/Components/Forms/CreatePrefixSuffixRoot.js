@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../CSS/Form.css';
 
-class FormPrefixSuffixRoot extends Component {
+class CreatePrefixSuffixRoot extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -114,7 +114,7 @@ class FormPrefixSuffixRoot extends Component {
   }
 }
 
-FormPrefixSuffixRoot.proTypes = {
+CreatePrefixSuffixRoot.proTypes = {
   p: PropTypes.string.isRequired,
   word: PropTypes.string,
   meaning: PropTypes.string,
@@ -123,10 +123,10 @@ FormPrefixSuffixRoot.proTypes = {
   tongue: PropTypes.string
 }
 
-FormPrefixSuffixRoot.defaultProps = {
+CreatePrefixSuffixRoot.defaultProps = {
   onSave() {},
   p: 'prefixSuffixRoots/',
   tongue: "English"
 }
 
-export default FormPrefixSuffixRoot;
+export default CreatePrefixSuffixRoot;
