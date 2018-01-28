@@ -23,10 +23,10 @@ class App extends Component {
   }
 
   componentWillMount(){
-    this.loadWords();
+    this.loadRandomWords();
   }
 
-  async loadWords(){
+  async loadRandomWords(){
     let fourLetterWords = await apiCalls.getWords("fourLetterWords");
     let prefixSuffixRoots = await apiCalls.getWords("prefixSuffixRoots");
     let verbos = await apiCalls.getWords("verbos");
@@ -36,7 +36,6 @@ class App extends Component {
     let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
     let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
 
-
     this.setState({
       fourLetterWord,
       fourLetterWords,
@@ -45,10 +44,17 @@ class App extends Component {
       verbos: verbos,
       verbo: verbo
     });
-    console.log(verbo, verbos);
   }
 
+  async loadPalabra(p = "prefixSuffixRoots", p_id = "5a6d123f4f90e60fe36db2d3"){
+    let palabra = await apiCalls.getPalabra(p, p_id);
+    console.log(palabra);
+  }
+
+
+
   render() {
+    this.loadPalabra();
     return (
       <div className="App">
         <h2>Verbos</h2>
