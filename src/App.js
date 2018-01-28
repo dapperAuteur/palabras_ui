@@ -50,6 +50,8 @@ class App extends Component {
 
   async addPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
     let newPalabra = await apiCalls.createPalabra(p, pObj);
+    this.setState({ fourLetterWord: newPalabra });
+    console.log(newPalabra);
   }
 
   async updatePalabra(p = "verbos/", pObj = { _id: "", spanish: "asdf" }) {
@@ -60,8 +62,8 @@ class App extends Component {
   }
 
   handleSave=(p, pObj) => {
-    // this.addPalabra(p, pObj);
-    console.log(p, pObj, 8);
+    this.addPalabra(p, pObj);
+    console.log(p, pObj);
     //route to new palabra after this.addPalabra is finished or form if errors
   }
 

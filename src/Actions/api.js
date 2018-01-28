@@ -37,12 +37,12 @@ export async function getPalabra(p, pId) {
 }
 
 export async function createPalabra(p, pObj) {
-  return fetch(`${APIURL}${p}${pObj}`, {
+  return fetch(`${APIURL}${p}`, {
     method: 'post',
     headers: new Headers({
       'Content-Type': 'application/json',
     }),
-    body: JSON.stringify({ pObj })
+    body: JSON.stringify({ ...pObj })
   })
     .then(resp => {
       if (!resp.ok) {

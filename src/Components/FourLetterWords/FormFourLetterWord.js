@@ -6,7 +6,7 @@ class FormFourLetterWords extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      p: 'fourLetterWords',
+      p: 'fourLetterWords/',
       word: '',
       tongue: ''
     }
@@ -17,7 +17,8 @@ class FormFourLetterWords extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let { p, ...pObj } = { p, ...this.state };
-    this.props.onSave({ p, pObj });
+    console.log(p, pObj);
+    this.props.onSave(p, pObj);
     this.setState({
       word: '',
       tongue: ''
