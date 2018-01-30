@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import shuffle from 'shuffle-array';
-import * as authCalls from './Actions/index';
+import * as authCalls from './Actions/authApi';
 import * as apiCalls from './Actions/api';
+import DetailsUser from './Components/Users/DetailsUser';
+import AuthForm from './Components/Forms/AuthForm';
 import './App.css';
 
 class App extends Component {
@@ -16,11 +18,19 @@ class App extends Component {
       verbo: {},
       verbos: [],
       user: {},
+      users: []
     }
+    this.handleAuth = this.handleAuth.bind(this);
   }
 
   componentWillMount(){
     this.loadRandomPalabras();
+    this.loadUser();
+    console.log(this.state);
+  }
+
+  async loadUser(){
+    console.log("load users");
   }
 
   async loadRandomPalabras(){
@@ -44,7 +54,8 @@ class App extends Component {
   }
 
   async loadPalabra(p = "prefixSuffixRoots/", pId = "5a6d123f4f90e60fe36db2d3"){
-    let palabra = await apiCalls.getPalabra(p, pId);
+    console.log(p, pId);
+    // let palabra = await apiCalls.getPalabra(p, pId);
     // let pal = p.slice(0, -1);
     // this.setState({ `${pal}`: palabra })
   }
@@ -69,6 +80,30 @@ class App extends Component {
     //route to new palabra after this.addPalabra is finished or form if errors
   }
 
+  async handleAuth(user) {
+    console.log(user);
+    let currentUser;
+    if (user.username !== "") {
+      console.log(user.username);
+      currentUser = await authCalls.signUp(user);
+      console.log(currentUser);
+
+      console.log(this.state);
+    } else {
+      console.log("signIn");
+      currentUser = await authCalls.signIn(user);
+      console.log(currentUser);
+
+      console.log(this.state);
+    }
+    console.log(this.state);
+    this.setState({
+      user
+    })
+
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -76,6 +111,8 @@ class App extends Component {
         <h2>Random Four Letter Word: { this.state.fourLetterWord.word }</h2>
         <h2>Random Prefix Root or Suffix: { this.state.prefixSuffixRoot.word }</h2>
         <h2>Random Spanish Verb: { this.state.verbo.spanish }</h2>
+        <DetailsUser user={ this.state.user }/>
+        <AuthForm onAuth={ this.handleAuth }/>
       </div>
     );
   }

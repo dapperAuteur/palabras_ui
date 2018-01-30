@@ -1,5 +1,9 @@
 const APIURL = "//localhost:8081/api/ver0001/";
 
+export async function onAuth(params) {
+  console.log(params);
+}
+
 export async function getPalabras(param) {
   return fetch(`${APIURL}${param}`)
     .then(resp => {
