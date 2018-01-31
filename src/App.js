@@ -5,6 +5,7 @@ import * as apiCalls from './Actions/api';
 import NavBar from './Components/NavBar';
 import DetailsUser from './Components/Users/DetailsUser';
 import AuthForm from './Components/Forms/AuthForm';
+import Letter from './Components/FourLetterWords/Letter';
 import './App.css';
 
 class App extends Component {
@@ -114,6 +115,7 @@ class App extends Component {
         <h2>Random Four Letter Word: { this.state.fourLetterWord.word }</h2>
         <h2>Random Prefix Root or Suffix: { this.state.prefixSuffixRoot.word }</h2>
         <h2>Random Spanish Verb: { this.state.verbo.spanish }</h2>
+        <Letter />
         <DetailsUser user={ this.state.user }/>
         <AuthForm onAuth={ this.handleAuth }/>
       </div>
