@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import shuffle from 'shuffle-array';
 import * as authCalls from './Actions/authApi';
 import * as apiCalls from './Actions/api';
+import NavBar from './Components/NavBar';
 import DetailsUser from './Components/Users/DetailsUser';
 import AuthForm from './Components/Forms/AuthForm';
 import './App.css';
@@ -15,10 +16,10 @@ class App extends Component {
       game: {},
       prefixSuffixRoot: {},
       prefixSuffixRoots: [],
-      verbo: {},
-      verbos: [],
       user: {},
-      users: []
+      users: [],
+      verbo: {},
+      verbos: []
     }
     this.handleAuth = this.handleAuth.bind(this);
   }
@@ -107,6 +108,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <NavBar />
         <h1>Palabras</h1>
         <h2>Random Four Letter Word: { this.state.fourLetterWord.word }</h2>
         <h2>Random Prefix Root or Suffix: { this.state.prefixSuffixRoot.word }</h2>
