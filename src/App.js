@@ -14,6 +14,7 @@ class App extends Component {
       fourLetterWord: {},
       fourLetterWords: [],
       game: {},
+      games: [],
       prefixSuffixRoot: {},
       prefixSuffixRoots: [],
       user: {},
