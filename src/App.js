@@ -6,6 +6,7 @@ import NavBar from './Components/NavBar';
 import DetailsUser from './Components/Users/DetailsUser';
 import AuthForm from './Components/Forms/AuthForm';
 import Letter from './Components/FourLetterWords/Letter';
+import Letters from './Components/FourLetterWords/Letters';
 import './App.css';
 
 class App extends Component {
@@ -116,6 +117,7 @@ class App extends Component {
         <h2>Random Prefix Root or Suffix: { this.state.prefixSuffixRoot.word }</h2>
         <h2>Random Spanish Verb: { this.state.verbo.spanish }</h2>
         <Letter />
+        <Letters />
         <DetailsUser user={ this.state.user }/>
         <AuthForm onAuth={ this.handleAuth }/>
       </div>

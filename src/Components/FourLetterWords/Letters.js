@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Letter extends Component {
+class Letters extends Component {
   constructor(props) {
     super(props);
     // this.state = {
@@ -10,15 +10,15 @@ class Letter extends Component {
     //     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
     //   ]
     // }
-    this.handleLetterUp1 = this.handleLetterUp1.bind(this);
+    this.handleLetter = this.handleLetter.bind(this);
   }
-  handleLetterUp1(){
+  handleLetter(){
 
   }
 
   render() {
     // const { letter, letters } = this.state ;
-    const { letter, letters } = this.props;
+    const { letters } = this.props;
     const style = {
       display: 'flex',
       justifyContent: 'space-around',
@@ -36,22 +36,20 @@ class Letter extends Component {
     }
     return (
       <div style={ style }>
-        <span style={ spanStyle }>{ letter }</span>
+        <span style={ spanStyle }>{ letters }</span>
       </div>
     )
   }
 }
 
-Letter.propTypes = {
-  letter: PropTypes.string.isRequired,
+Letters.propTypes = {
   letters: PropTypes.array.isRequired
 }
 
-Letter.defaultProps = {
-  letter: "A",
+Letters.defaultProps = {
   letters: [
     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
   ]
 }
 
-export default Letter;
+export default Letters;
