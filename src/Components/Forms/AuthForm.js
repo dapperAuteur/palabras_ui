@@ -102,7 +102,7 @@ class AuthForm extends Component {
       );
     } else {
       return (
-        <div className="col-sm-4 col-sm-offset-4">
+        <div className="authForm col-sm-4 col-sm-offset-4">
           <button
             type="button"
             className="btn sign btn-default"

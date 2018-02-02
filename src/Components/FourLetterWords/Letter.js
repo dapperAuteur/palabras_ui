@@ -18,8 +18,7 @@ class Letter extends Component {
   }
 
   render() {
-    // const { letter, letters } = this.state ;
-    const { letter, letters } = this.props;
+    const { letter } = this.props;
 
     return (
       <div className="letter">
@@ -30,15 +29,11 @@ class Letter extends Component {
 }
 
 Letter.propTypes = {
-  letter: PropTypes.string.isRequired,
-  letters: PropTypes.array.isRequired
+  letter: PropTypes.string.isRequired
 }
 
 Letter.defaultProps = {
-  letter: "A",
-  letters: [
-    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-  ]
+  letter: "A"
 }
 
 export default Letter;

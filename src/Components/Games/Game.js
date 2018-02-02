@@ -20,4 +20,8 @@ class Game extends Component {
   }
 }
 
+Game.propTypes = {
+  Letter: PropTypes.instanceOf(Letter)
+}
+
 export default Game;
