@@ -4,8 +4,8 @@ import * as authCalls from './Actions/authApi';
 import * as apiCalls from './Actions/api';
 import NavBar from './Components/NavBar';
 import AuthForm from './Components/Forms/AuthForm';
-import Letter from './Components/FourLetterWords/Letter';
-import GameStatus from './Components/GameStatus';
+import Game from './Components/Games/Game';
+import GameStatus from './Components/Games/GameStatus';
 import './App.css';
 
 class App extends Component {
@@ -119,7 +119,7 @@ class App extends Component {
       <div className="App">
         <NavBar className="NavBar" user={ this.state.user } onLogout={ this.handleLogOut }/>
         <AuthForm className="hero" onAuth={ this.handleAuth } />
-        <Letter />
+        <Game />
         <GameStatus />
       </div>
     );

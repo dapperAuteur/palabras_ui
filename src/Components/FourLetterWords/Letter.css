@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.letter {
+  display: flex;
+  height: 100px;
+  background-color: lightGrey;
+  margin: 5px;
+}
+
+.letterSpan {
+  align-self: center;
+  font-size: 100px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* font-family: Rubik Mono One, sans-serif; */
+  /* font-family: Graduate, cursive; */
+  font-family: Patua One, cursive;
+}
