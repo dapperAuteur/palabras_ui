@@ -2,9 +2,10 @@ import React from 'react';
 import './NavBar.css';
 
 const NavBar = (props) => {
-  const { user, onLogout, profileImageUrl } = props;
+  const { user, onLogout } = props;
   console.log(props);
   console.log(user);
+  console.log(onLogout);
 
   return (
     <nav className='navbar navbar-default'>
@@ -12,10 +13,11 @@ const NavBar = (props) => {
         <div className='navbar-header'>
             <span>Palabras</span>
         </div>
-        { user ?
+        { user.token ?
           <ul className='nav navbar-nav navbar-right'>
             <li><a>{ user.username }</a></li>
-            <li><a><img src={ profileImageUrl } alt='user'/></a></li>
+            <li><a><img src={ user.profileImageUrl } alt='user'/></a></li>
+            <li onClick={ onLogout }>Log out</li>
           </ul> :
           <ul className='nav navbar-nav navbar-right'>
             <li><a>Sign up</a></li>

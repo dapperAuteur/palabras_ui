@@ -3,10 +3,9 @@ import shuffle from 'shuffle-array';
 import * as authCalls from './Actions/authApi';
 import * as apiCalls from './Actions/api';
 import NavBar from './Components/NavBar';
-import DetailsUser from './Components/Users/DetailsUser';
 import AuthForm from './Components/Forms/AuthForm';
 import Letter from './Components/FourLetterWords/Letter';
-import Letters from './Components/FourLetterWords/Letters';
+import GameStatus from './Components/GameStatus';
 import './App.css';
 
 class App extends Component {
@@ -25,6 +24,7 @@ class App extends Component {
       verbos: []
     }
     this.handleAuth = this.handleAuth.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
   componentWillMount(){
@@ -108,18 +108,19 @@ class App extends Component {
 
   }
 
+  handleLogOut(){
+    this.setState({
+      user: {}
+    });
+  }
+
   render() {
     return (
       <div className="App">
-        <NavBar />
-        <h1>Palabras</h1>
-        <h2>Random Four Letter Word: { this.state.fourLetterWord.word }</h2>
-        <h2>Random Prefix Root or Suffix: { this.state.prefixSuffixRoot.word }</h2>
-        <h2>Random Spanish Verb: { this.state.verbo.spanish }</h2>
+        <NavBar className="NavBar" user={ this.state.user } onLogout={ this.handleLogOut }/>
+        <AuthForm className="hero" onAuth={ this.handleAuth } />
         <Letter />
-        <Letters />
-        <DetailsUser user={ this.state.user }/>
-        <AuthForm onAuth={ this.handleAuth }/>
+        <GameStatus />
       </div>
     );
   }

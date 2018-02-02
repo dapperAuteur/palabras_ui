@@ -1,12 +1,30 @@
-.navbar-brand > img {
-  display: inline-block;
-  margin-bottom: 2px;
-  width: 20px;
-  border-radius: 2px;
+a:hover {
+  opacity: 1;
 }
 
-.nav > li > a > img {
-  margin: -20px 0 -15px;
-  width: 40px;
-  border-radius: 3px;
+.navbar {
+  display: flex;
+  align-self: flex-start;
+  padding: 35px 50px 0;
+  flex: 0 0 100%;
+}
+
+li {
+  list-style: none;
+  text-decoration: none;
+  padding-left: 30px;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 100%;
+}
+
+.nav {
+  display: flex;
+  align-self: flex-end;
+}
+.navbar-header {
+  align-self: flex-start;
 }

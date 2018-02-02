@@ -1,0 +1,15 @@
+.gameStatus {
+  display: flex;
+  padding: 20px 30px 10px;
+  background-color: green;
+  flex: 0 0 100%;
+  justify-content: space-around;
+  font-family: Rubik Mono One, sans-serif;
+  font-size: 2em;
+  color: white;
+  align-self: flex-end;
+}
+
+.gameStat {
+  border: solid;
+}
