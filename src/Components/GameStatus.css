@@ -8,6 +8,7 @@
   font-size: 2em;
   color: white;
   align-self: flex-end;
+  text-shadow: 4px 4px #000000;
 }
 
 .gameStat {

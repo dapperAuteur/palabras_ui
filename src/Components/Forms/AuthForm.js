@@ -57,10 +57,10 @@ class AuthForm extends Component {
     if (this.state.signIn) {
 
       return (
-        <div className="col-sm-4 col-sm-offset-4">
+        <div className="authForm col-sm-4 col-sm-offset-4">
           <button
             type="button"
-            className="btn btn-default"
+            className="btn sign btn-default"
             onClick={ this.toggleSignIn }
           >
             Sign Up
@@ -105,7 +105,7 @@ class AuthForm extends Component {
         <div className="col-sm-4 col-sm-offset-4">
           <button
             type="button"
-            className="btn btn-default"
+            className="btn sign btn-default"
             onClick={ this.toggleSignIn }
           >
             Sign In
