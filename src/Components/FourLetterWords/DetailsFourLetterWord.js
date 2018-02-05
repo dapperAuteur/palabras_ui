@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const DetailsFourLetterWord = (props) => {
   let { fourLetterWord } = { ...props };
@@ -12,4 +13,8 @@ const DetailsFourLetterWord = (props) => {
   )
 }
 
-export default DetailsFourLetterWord;
+const mapStateToProps = state => ({
+  fourLetterWord: state.fourLetterWord
+})
+
+export default connect(mapStateToProps, null)(DetailsFourLetterWord);

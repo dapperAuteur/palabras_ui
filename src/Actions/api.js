@@ -1,3 +1,5 @@
+import shuffle from 'shuffle-array';
+
 const APIURL = "//localhost:8081/api/ver0001/";
 
 export async function onAuth(params) {
@@ -20,6 +22,23 @@ export async function getPalabras(param) {
       }
       return resp.json();
     })
+}
+
+export const loadRandomPalabras = (fourLetterWord) => ({
+  type: "LOAD_RANDOM_PALABRAS",
+  fourLetterWord
+})
+
+export async function fetchRandomPalabras() {
+  let fourLetterWords = await getPalabras("fourLetterWords");
+  let prefixSuffixRoots = await getPalabras("prefixSuffixRoots");
+  let verbos = await getPalabras("verbos");
+
+  let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
+  let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+  let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
+  console.log(fourLetterWord, fourLetterWords);
+  return loadRandomPalabras(fourLetterWord);
 }
 
 export async function getPalabra(p, pId) {
