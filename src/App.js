@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import shuffle from 'shuffle-array';
-import * as authCalls from './Actions/authApi';
-import * as apiCalls from './Actions/api';
-import NavBar from './Components/NavBar';
-import AuthForm from './Components/Forms/AuthForm';
-import Game from './Components/Games/Game';
-import GameStatus from './Components/Games/GameStatus';
+import * as authCalls from './actions/authApi';
+import * as apiCalls from './actions/api';
+import NavBar from './components/NavBar';
+import GameVerbo from './components/Verbos/GameVerbo';
+import GameStatus from './components/Games/GameStatus';
 import './App.css';
 
 class App extends Component {
@@ -118,8 +117,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar className="NavBar" user={ this.state.user } onLogout={ this.handleLogOut }/>
-        <AuthForm className="hero" onAuth={ this.handleAuth } />
-        <Game />
+        <GameVerbo verbo={ this.state.verbo } verbos={ this.state.verbos } />
         <GameStatus />
       </div>
     );

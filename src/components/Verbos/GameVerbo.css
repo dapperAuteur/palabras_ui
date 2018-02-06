@@ -1,0 +1,23 @@
+.GameVerbo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 3px solid blue;
+  padding: 5px;
+  align-self: center;
+  margin: auto;
+}
+
+.spanish {
+
+}
+
+.english {
+
+}
+
+.hint {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
