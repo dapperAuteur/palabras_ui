@@ -17,4 +17,5 @@ html {
   flex-wrap: wrap;
   background-color: green;
   height: 780px;
+  opacity: 0.85;
 }

@@ -2,8 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  border: 3px solid blue;
-  padding: 5px;
+  border: 5px solid blue;
+  border-radius: 15px;
+  padding: 15px;
   align-self: center;
   margin: auto;
 }
@@ -20,4 +21,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+#hintTitle {
+  align-self: center;
 }

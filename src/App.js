@@ -3,6 +3,7 @@ import shuffle from 'shuffle-array';
 import * as authCalls from './actions/authApi';
 import * as apiCalls from './actions/api';
 import NavBar from './components/NavBar';
+import AuthForm from './components/Forms/AuthForm';
 import GameVerbo from './components/Verbos/GameVerbo';
 import GameStatus from './components/Games/GameStatus';
 import './App.css';
@@ -101,8 +102,13 @@ class App extends Component {
     }
     console.log(this.state);
     this.setState({
-      user
+      user: currentUser
     })
+    if (typeof(Storage) !== "undefined") {
+      localStorage.setItem("user", JSON.stringify(currentUser));
+    } else {
+      console.log("no local storage");
+    }
 
 
   }
@@ -118,6 +124,7 @@ class App extends Component {
       <div className="App">
         <NavBar className="NavBar" user={ this.state.user } onLogout={ this.handleLogOut }/>
         <GameVerbo verbo={ this.state.verbo } verbos={ this.state.verbos } />
+        <AuthForm onAuth={ this.handleAuth } />
         <GameStatus />
       </div>
     );
