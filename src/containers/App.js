@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import shuffle from 'shuffle-array';
-import * as authCalls from './actions/authApi';
-import * as apiCalls from './actions/api';
-import NavBar from './components/NavBar';
-import AuthForm from './components/Forms/AuthForm';
-import GameVerbo from './components/Verbos/GameVerbo';
-import GameStatus from './components/Games/GameStatus';
+import * as apiCalls from './../actions/api';
+import * as authCalls from './../actions/authApi';
+import AuthForm from './../components/Forms/AuthForm';
+import Main from './Main';
+import NavBar from './../components/NavBar';
 import './App.css';
 
 class App extends Component {
@@ -28,7 +27,16 @@ class App extends Component {
   }
 
   componentWillMount(){
+    let user;
     this.loadRandomPalabras();
+    if (typeof(Storage) !== "undefined") {
+      user = JSON.parse(localStorage.getItem("user"));
+      if (user.hasOwnProperty('token')) {
+        this.setState({
+          user
+        });
+      }
+    }
     this.loadUser();
     console.log(this.state);
   }
@@ -123,9 +131,8 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar className="NavBar" user={ this.state.user } onLogout={ this.handleLogOut }/>
-        <GameVerbo verbo={ this.state.verbo } verbos={ this.state.verbos } />
         <AuthForm onAuth={ this.handleAuth } />
-        <GameStatus />
+        <Main props={ this.state }/>
       </div>
     );
   }
