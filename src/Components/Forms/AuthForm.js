@@ -17,10 +17,17 @@ class AuthForm extends Component {
       username: '',
       password: '',
       profileImageUrl: '',
-      signIn: true
+      signUp: true
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    let signUp = this.props.showSignUpForm;
+    this.setState({
+      signUp
+    })
   }
 
   handleChange(e) {
@@ -30,8 +37,9 @@ class AuthForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    let { signIn, ...user } = { ...this.state };
-    console.log(user);
+    let { signUp, ...user } = { ...this.state };
+    let { showSignUpForm } = this.props;
+    console.log(user, showSignUpForm);
 
       this.props.onAuth({ ...user });
 
@@ -43,18 +51,18 @@ class AuthForm extends Component {
       })
   }
 
-  toggleSignIn = () => {
-    let signIn = this.state.signIn;
+  togglesignUp = () => {
+    let signUp = this.state.signUp;
     this.setState({
-      signIn: !signIn
+      signUp: !signUp
     });
-    console.log(signIn);
+    console.log(signUp);
   }
 
   render() {
     const { email, password, profileImageUrl, username } = this.state;
     const { buttonText, errorMessage, heading, onClose } = this.props;
-    if (this.state.signIn) {
+    if (!this.props.showSignUpForm) {
 
       return (
         <div className="authForm col-sm-4 col-sm-offset-4">
@@ -68,7 +76,7 @@ class AuthForm extends Component {
           <button
             type="button"
             className="btn sign btn-default"
-            onClick={ this.toggleSignIn }
+            onClick={ this.togglesignUp }
           >
             Sign Up
           </button>
@@ -112,8 +120,15 @@ class AuthForm extends Component {
         <div className="col-sm-4 col-sm-offset-4">
           <button
             type="button"
+            className="close-button"
+            onClick={ onClose }
+          >
+            Close
+          </button>
+          <button
+            type="button"
             className="btn sign btn-default"
-            onClick={ this.toggleSignIn }
+            onClick={ this.togglesignUp }
           >
             Sign In
           </button>

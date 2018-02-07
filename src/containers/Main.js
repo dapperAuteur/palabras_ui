@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import GameVerbo from './../components/Verbos/GameVerbo';
 import GameStatus from './../components/Games/GameStatus';
 
@@ -19,11 +20,13 @@ class Main extends Component {
 
     return (
       <div className="Main">
-        <GameVerbo verbo={ props.verbo } verbos={ props.verbos } />
-        <GameStatus />
+        <Switch>
+          <GameVerbo verbo={ props.verbo } verbos={ props.verbos } />
+          <GameStatus />
+        </Switch>
       </div>
     )
   }
 }
 
-export default Main;
+export default withRouter(Main);

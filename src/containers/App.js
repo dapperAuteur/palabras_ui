@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import shuffle from 'shuffle-array';
 import * as apiCalls from './../actions/api';
 import * as authCalls from './../actions/authApi';
@@ -17,7 +18,9 @@ class App extends Component {
       games: [],
       prefixSuffixRoot: {},
       prefixSuffixRoots: [],
+      // showAuthForm: false,
       showLoginForm: false,
+      showSignUpForm: false,
       user: {},
       users: [],
       verbo: {},
@@ -43,7 +46,7 @@ class App extends Component {
   }
 
   async loadUser(){
-    console.log("load users");
+    console.log(this.state.user);
   }
 
   async loadRandomPalabras(){
@@ -111,7 +114,9 @@ class App extends Component {
     }
     console.log(this.state);
     this.setState({
+      // showAuthForm: false,
       showLoginForm: false,
+      showSignUpForm: false,
       user: currentUser
     })
     if (typeof(Storage) !== "undefined") {
@@ -134,14 +139,31 @@ class App extends Component {
   }
 
   render() {
-    const { showLoginForm, user } = this.state;
+    const { showLoginForm, showSignUpForm, user } = this.state;
     return (
       <div className="App">
-        <NavBar className="NavBar" user={ user } onShowLoginForm={ () => this.setState({ showLoginForm: true }) } onLogout={ this.handleLogOut }/>
-        { showLoginForm ?
+        <NavBar
+          className="NavBar"
+          user={ user }
+          onLogout={ this.handleLogOut }
+          onShowLoginForm={ () => this.setState({
+            showLoginForm: true,
+            showSignUpForm: false
+          }) }
+          onShowSignUpForm={ () => this.setState({
+            showLoginForm: false,
+            showSignUpForm: true
+          }) }
+          />
+        { showLoginForm || showSignUpForm ?
           <AuthForm
             onAuth={ this.handleAuth }
-            onClose={ () => this.setState({ showLoginForm: false })}
+            onClose={ () => this.setState({
+              showLoginForm: false,
+              showSignUpForm: false
+            })}
+            showLoginForm={ showLoginForm }
+            showSignUpForm={ showSignUpForm }
             /> :
             null
         }
@@ -151,4 +173,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
