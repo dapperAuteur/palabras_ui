@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import shuffle from 'shuffle-array';
 import GameVerbo from './../components/Verbos/GameVerbo';
 import GameStatus from './../components/Games/GameStatus';
 

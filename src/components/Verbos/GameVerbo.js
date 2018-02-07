@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './GameVerbo.css';
 
 const GameVerbo = props => {
-  const { user, verbo, verbos } = props;
+  const { verbo } = props;
   let showHint = false;
   const hint = () => {
     if (showHint) {
@@ -33,24 +33,18 @@ const GameVerbo = props => {
 }
 
 GameVerbo.propTypes = {
-  user: PropTypes.object,
-  verbo: PropTypes.object,
-  verbos: PropTypes.array
+  verbo: PropTypes.object
 }
 
 GameVerbo.defaultProps = {
-  user: {
-    username: 'awe',
-    verbo: {
-      "english": "to help",
-      "reflexive": false,
-      "irregular": false,
-      "terminación": "-ar",
-      "grupo": 0,
-      "_id": "5a6d1177adce4c0fce1e4f18",
-      "spanish": "ayudar"
-    },
-    verbos: []
+  verbo: {
+    "english": "to help",
+    "reflexive": false,
+    "irregular": false,
+    "terminación": "-ar",
+    "grupo": 0,
+    "_id": "5a6d1177adce4c0fce1e4f18",
+    "spanish": "ayudar"
   }
 }
 export default GameVerbo;
