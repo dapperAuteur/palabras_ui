@@ -122,6 +122,10 @@ class App extends Component {
   }
 
   handleLogOut(){
+    let user = {};
+    if (typeof(Storage) !== "undefined") {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
     this.setState({
       user: {}
     });
