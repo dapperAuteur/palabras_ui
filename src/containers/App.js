@@ -17,6 +17,7 @@ class App extends Component {
       games: [],
       prefixSuffixRoot: {},
       prefixSuffixRoots: [],
+      showLoginForm: false,
       user: {},
       users: [],
       verbo: {},
@@ -110,6 +111,7 @@ class App extends Component {
     }
     console.log(this.state);
     this.setState({
+      showLoginForm: false,
       user: currentUser
     })
     if (typeof(Storage) !== "undefined") {
@@ -132,10 +134,17 @@ class App extends Component {
   }
 
   render() {
+    const { showLoginForm, user } = this.state;
     return (
       <div className="App">
-        <NavBar className="NavBar" user={ this.state.user } onLogout={ this.handleLogOut }/>
-        <AuthForm onAuth={ this.handleAuth } />
+        <NavBar className="NavBar" user={ user } onShowLoginForm={ () => this.setState({ showLoginForm: true }) } onLogout={ this.handleLogOut }/>
+        { showLoginForm ?
+          <AuthForm
+            onAuth={ this.handleAuth }
+            onClose={ () => this.setState({ showLoginForm: false })}
+            /> :
+            null
+        }
         <Main props={ this.state }/>
       </div>
     );

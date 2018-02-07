@@ -2,7 +2,7 @@ import React from 'react';
 import './NavBar.css';
 
 const NavBar = (props) => {
-  const { user, onLogout } = props;
+  const { user, onLogout, onShowLoginForm } = props;
   console.log(props);
   console.log(user);
   console.log(onLogout);
@@ -20,8 +20,8 @@ const NavBar = (props) => {
             <li onClick={ onLogout }>Log out</li>
           </ul> :
           <ul className='nav navbar-nav navbar-right'>
-            <li><a>Sign up</a></li>
-            <li><a>Sign in</a></li>
+            <li onClick={ onShowLoginForm }><a>Sign up</a></li>
+            <li onClick={ onShowLoginForm }><a>Sign in</a></li>
           </ul>
         }
       </div>

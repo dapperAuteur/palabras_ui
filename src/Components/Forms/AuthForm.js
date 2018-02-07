@@ -52,12 +52,19 @@ class AuthForm extends Component {
   }
 
   render() {
-    const { email, username, password, profileImageUrl } = this.state;
-    const { heading, buttonText, errorMessage } = this.props;
+    const { email, password, profileImageUrl, username } = this.state;
+    const { buttonText, errorMessage, heading, onClose } = this.props;
     if (this.state.signIn) {
 
       return (
         <div className="authForm col-sm-4 col-sm-offset-4">
+          <button
+            type="button"
+            className="close-button"
+            onClick={ onClose }
+          >
+            Close
+          </button>
           <button
             type="button"
             className="btn sign btn-default"
