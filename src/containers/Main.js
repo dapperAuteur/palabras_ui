@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
-import FourLetterWordGame from './../components/Games/FourLetterWordGame';
-import GameVerbo from './../components/Verbos/GameVerbo';
+import DetailsFourLetterWord from './../components/FourLetterWords/DetailsFourLetterWord';
+import DetailsVerbo from './../components/Verbos/DetailsVerbo';
+import DetailsPrefixSuffixRoot from '../components/PrefixSuffixRoots/DetailsPrefixSuffixRoot';
 import GameStatus from './../components/Games/GameStatus';
 
 const routes = [
   {
-    path: '/games/four-letter-words',
-    component: FourLetterWordGame
+    path: '/words/four-letter-word',
+    component: DetailsFourLetterWord,
+    data: this.props
   },
   {
-    path: '/games/verbos',
-    component: GameVerbo,
+    path: '/words/verbo',
+    component: DetailsVerbo,
+    data: this.props
+  },
+  {
+    path: '/words/prefix-suffix-root',
+    component: DetailsPrefixSuffixRoot,
     data: this.props
   }
 ]

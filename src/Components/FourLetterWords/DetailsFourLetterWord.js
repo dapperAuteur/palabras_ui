@@ -1,7 +1,8 @@
 import React from 'react';
 
 const DetailsFourLetterWord = (props) => {
-  let { fourLetterWord } = { ...props };
+  // let { fourLetterWord } = { ...props };
+  const fourLetterWord = props.data.props.fourLetterWord;
 
   return (
     <div>

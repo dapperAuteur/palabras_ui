@@ -1,7 +1,8 @@
 import React from 'react';
 
 const DetailsPrefixSuffixRoot = (props) => {
-  let { prefixSuffixRoot } = { ...props };
+  // let { prefixSuffixRoot } = { ...props };
+  const prefixSuffixRoot = props.data.props.prefixSuffixRoot;
 
   return (
     <div>

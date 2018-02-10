@@ -22,23 +22,23 @@ const NavBar = (props) => {
                  className="menu-item"
                  >
                  <Link
-                   to={ '/games/four-letter-words' }>
-                   Four Letter Word Game
+                   to={ '/words/four-letter-word' }>
+                   Four Letter Word
                  </Link>
               </a>
               <a id="prefixSuffixRoots"
                  className="menu-item"
                  >
                  <Link
-                   to={ '/games/prefix-suffix-roots' }>
-                   Prefix Suffix Root Game
+                   to={ '/words/prefix-suffix-root' }>
+                   Prefix Suffix Root
                  </Link>
               </a>
               <a id="Verbos"
                  className="menu-item"
                  >
-                 <Link to={ '/games/verbos' }>
-                   Verbos
+                 <Link to={ '/words/verbo' }>
+                   Verbo
                  </Link>
               </a>
             </span>

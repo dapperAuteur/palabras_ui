@@ -1,7 +1,8 @@
 import React from 'react';
 
 const DetailsVerbo = (props) => {
-  let { verbo } = { ...props };
+  // let { verbo } = { ...props };
+  const verbo = props.data.props.verbo;
 
   return (
     <div>
