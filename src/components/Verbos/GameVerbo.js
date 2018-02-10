@@ -3,16 +3,21 @@ import PropTypes from 'prop-types';
 import './GameVerbo.css';
 
 const GameVerbo = props => {
-  const { verbo } = props;
+  // const { verbo } = props;
+  const verbo = props.data.props.verbo;
   let showHint = false;
+  console.log(0, props.data.props.verbo);
   const hint = () => {
+    showHint = !showHint;
+    console.log(showHint);
     if (showHint) {
+      console.log("obj");
       return (
         <div>
-        <h3>Reflexive: { verbo.reflexive }</h3>
-        <h3>Irregular: { verbo.irregular }</h3>
-        <h3>Categoría de Irregular: { verbo.categoría_de_irregular }</h3>
-        <h3>Cambiar de Irregular: { verbo.cambiar_de_irregular }</h3>
+          <h3>Reflexive: { verbo.reflexive }</h3>
+          <h3>Irregular: { verbo.irregular }</h3>
+          <h3>Categoría de Irregular: { verbo.categoría_de_irregular }</h3>
+          <h3>Cambiar de Irregular: { verbo.cambiar_de_irregular }</h3>
         </div>
       )
     }
@@ -25,7 +30,7 @@ const GameVerbo = props => {
       <button className="btn">
         SHOW WORD
       </button>
-      <button className="btn" onClick={ ()=>{ showHint = !showHint } }>
+      <button className="btn" onClick={ hint }>
         SHOW HINT
       </button>
     </div>

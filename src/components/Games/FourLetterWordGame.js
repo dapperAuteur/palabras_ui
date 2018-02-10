@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Letter from '../FourLetterWords/Letter';
 import './Game.css';
 
-class Game extends Component {
+class FourLetterWordGame extends Component {
   constructor(props) {
     super(props)
   }
@@ -20,4 +20,4 @@ class Game extends Component {
   }
 }
 
-export default Game;
+export default FourLetterWordGame;

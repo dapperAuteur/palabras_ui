@@ -7,8 +7,6 @@ a:hover {
   align-self: flex-start;
   padding: 35px 50px 0;
   flex: 0 0 100%;
-  color: white;
-  text-shadow: 3px 3px #000000;
 }
 
 li {
@@ -41,4 +39,12 @@ li {
 .btn:hover {
   background-color: blue;
   border-width: medium;
+}
+
+.menu-item {
+  text-decoration: none;
+  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }

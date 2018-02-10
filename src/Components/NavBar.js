@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = (props) => {
@@ -11,7 +12,36 @@ const NavBar = (props) => {
     <nav className='navbar navbar-default'>
       <div className='container-fluid'>
         <div className='navbar-header'>
-            <span>Palabras</span>
+            <span><Link
+                    to={ '/' }>
+                    Palabras Games
+                  </Link>
+            </span>
+            <span className="games">
+              <a id="fourLetterWords"
+                 className="menu-item"
+                 >
+                 <Link
+                   to={ '/games/four-letter-words' }>
+                   Four Letter Word Game
+                 </Link>
+              </a>
+              <a id="prefixSuffixRoots"
+                 className="menu-item"
+                 >
+                 <Link
+                   to={ '/games/prefix-suffix-roots' }>
+                   Prefix Suffix Root Game
+                 </Link>
+              </a>
+              <a id="Verbos"
+                 className="menu-item"
+                 >
+                 <Link to={ '/games/verbos' }>
+                   Verbos
+                 </Link>
+              </a>
+            </span>
         </div>
         { user.token ?
           <ul className='nav navbar-nav navbar-right'>
