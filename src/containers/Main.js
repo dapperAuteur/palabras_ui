@@ -3,7 +3,6 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import DetailsFourLetterWord from './../components/FourLetterWords/DetailsFourLetterWord';
 import DetailsVerbo from './../components/Verbos/DetailsVerbo';
 import DetailsPrefixSuffixRoot from '../components/PrefixSuffixRoots/DetailsPrefixSuffixRoot';
-import GameStatus from './../components/Games/GameStatus';
 
 const routes = [
   {
@@ -24,32 +23,23 @@ const routes = [
 ]
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+  
   componentWillMount(){
     console.log(this.props);
   }
 
   render() {
-    const {
-      props
-    } = this.props;
-    console.log(this.props);
 
     return (
       <div className="Main">
         <Switch>
           { routes.map(({ path, component: C, data }) => (
             <Route
+              key= { C }
               path={ path }
               render={ (props) => <C { ...props} data={ this.props } /> }
               />
           ))}
-
-
-          <GameStatus />
         </Switch>
       </div>
     )

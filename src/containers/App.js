@@ -42,11 +42,9 @@ class App extends Component {
       }
     }
     this.loadUser();
-    console.log(this.state);
   }
 
   async loadUser(){
-    console.log(this.state.user);
   }
 
   async loadRandomPalabras(){
@@ -70,7 +68,6 @@ class App extends Component {
   }
 
   async loadPalabra(p = "prefixSuffixRoots/", pId = "5a6d123f4f90e60fe36db2d3"){
-    console.log(p, pId);
     // let palabra = await apiCalls.getPalabra(p, pId);
     // let pal = p.slice(0, -1);
     // this.setState({ `${pal}`: palabra })
@@ -97,22 +94,12 @@ class App extends Component {
   }
 
   async handleAuth(user) {
-    console.log(user);
     let currentUser;
     if (user.username !== "") {
-      console.log(user.username);
       currentUser = await authCalls.signUp(user);
-      console.log(currentUser);
-
-      console.log(this.state);
     } else {
-      console.log("signIn");
       currentUser = await authCalls.signIn(user);
-      console.log(currentUser);
-
-      console.log(this.state);
     }
-    console.log(this.state);
     this.setState({
       // showAuthForm: false,
       showLoginForm: false,

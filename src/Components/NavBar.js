@@ -4,9 +4,6 @@ import './NavBar.css';
 
 const NavBar = (props) => {
   const { user, onLogout, onShowLoginForm, onShowSignUpForm } = props;
-  console.log(props);
-  console.log(user);
-  console.log(onLogout);
 
   return (
     <nav className='navbar navbar-default'>
@@ -18,29 +15,25 @@ const NavBar = (props) => {
                   </Link>
             </span>
             <span className="games">
-              <a id="fourLetterWords"
-                 className="menu-item"
-                 >
-                 <Link
-                   to={ '/words/four-letter-word' }>
+              <Link
+                   to={ '/words/four-letter-word' }
+                   id="fourLetterWords"
+                   className="menu-item">
                    Four Letter Word
-                 </Link>
-              </a>
-              <a id="prefixSuffixRoots"
-                 className="menu-item"
-                 >
-                 <Link
-                   to={ '/words/prefix-suffix-root' }>
-                   Prefix Suffix Root
-                 </Link>
-              </a>
-              <a id="Verbos"
-                 className="menu-item"
-                 >
-                 <Link to={ '/words/verbo' }>
-                   Verbo
-                 </Link>
-              </a>
+              </Link>
+              <Link
+               to={ '/words/prefix-suffix-root' }
+               id="prefixSuffixRoots"
+               className="menu-item">
+               Prefix Suffix Root
+             </Link>
+             <Link
+               to={ '/words/verbo' }
+               id="Verbos"
+               className="menu-item"
+               >
+               Verbo
+             </Link>
             </span>
         </div>
         { user.token ?
