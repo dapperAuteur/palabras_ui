@@ -61,7 +61,7 @@ class AuthForm extends Component {
 
   render() {
     const { email, password, profileImageUrl, username } = this.state;
-    const { buttonText, errorMessage, heading, onClose } = this.props;
+    const { buttonText, errorMessage, heading, onClose, onShowLoginForm, onShowSignUpForm } = this.props;
     if (!this.props.showSignUpForm) {
 
       return (
@@ -76,7 +76,7 @@ class AuthForm extends Component {
           <button
             type="button"
             className="btn sign btn-default"
-            onClick={ this.togglesignUp }
+            onClick={ onShowSignUpForm }
           >
             Sign Up
           </button>
@@ -128,7 +128,7 @@ class AuthForm extends Component {
           <button
             type="button"
             className="btn sign btn-default"
-            onClick={ this.togglesignUp }
+            onClick={ onShowLoginForm }
           >
             Sign In
           </button>

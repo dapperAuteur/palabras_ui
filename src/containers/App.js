@@ -162,6 +162,14 @@ class App extends Component {
               showLoginForm: false,
               showSignUpForm: false
             })}
+            onShowLoginForm={ () => this.setState({
+              showLoginForm: true,
+              showSignUpForm: false
+            })}
+            onShowSignUpForm={ () => this.setState({
+              showLoginForm: false,
+              showSignUpForm: true
+            })}
             showLoginForm={ showLoginForm }
             showSignUpForm={ showSignUpForm }
             /> :
