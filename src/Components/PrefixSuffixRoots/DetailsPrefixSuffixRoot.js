@@ -3,6 +3,7 @@ import React from 'react';
 const DetailsPrefixSuffixRoot = (props) => {
   // let { prefixSuffixRoot } = { ...props };
   const prefixSuffixRoot = props.data.props.prefixSuffixRoot;
+  const onLoadRandomPrefixSuffixRoots = props.data.onLoadRandomPrefixSuffixRoots;
 
   return (
     <div>
@@ -10,6 +11,11 @@ const DetailsPrefixSuffixRoot = (props) => {
       <h3>Type: { prefixSuffixRoot.type }</h3>
       <h3>Meaning: { prefixSuffixRoot.meaning }</h3>
       <h3>Examples: { prefixSuffixRoot.examples }</h3>
+        <button
+          onClick={ onLoadRandomPrefixSuffixRoots }
+          className="btn btn-default">
+          Next Prefix Suffix or Root
+        </button>
     </div>
   )
 }

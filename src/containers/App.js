@@ -18,7 +18,6 @@ class App extends Component {
       games: [],
       prefixSuffixRoot: {},
       prefixSuffixRoots: [],
-      // showAuthForm: false,
       showLoginForm: false,
       showSignUpForm: false,
       user: {},
@@ -28,6 +27,9 @@ class App extends Component {
     }
     this.handleAuth = this.handleAuth.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleLoadRandomFourLetterWords = this.handleLoadRandomFourLetterWords.bind(this);
+    this.handleLoadRandomPrefixSuffixRoots = this.handleLoadRandomPrefixSuffixRoots.bind(this);
+    this.handleLoadRandomVerbos = this.handleLoadRandomVerbos.bind(this);
   }
 
   componentWillMount(){
@@ -48,23 +50,41 @@ class App extends Component {
   }
 
   async loadRandomPalabras(){
+
+    this.handleLoadRandomFourLetterWords();
+    this.handleLoadRandomPrefixSuffixRoots();
+    this.handleLoadRandomVerbos();
+
+  }
+
+  async handleLoadRandomFourLetterWords(){
     let fourLetterWords = await apiCalls.getPalabras("fourLetterWords");
-    let prefixSuffixRoots = await apiCalls.getPalabras("prefixSuffixRoots");
-    let verbos = await apiCalls.getPalabras("verbos");
-
-
     let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
-    let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
-    let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
 
     this.setState({
       fourLetterWord,
-      fourLetterWords,
+      fourLetterWords
+    })
+  }
+
+  async handleLoadRandomPrefixSuffixRoots(){
+    let prefixSuffixRoots = await apiCalls.getPalabras("prefixSuffixRoots");
+    let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+
+    this.setState({
       prefixSuffixRoot,
-      prefixSuffixRoots,
-      verbos: verbos,
-      verbo: verbo
-    });
+      prefixSuffixRoots
+    })
+  }
+
+  async handleLoadRandomVerbos() {
+    let verbos = await apiCalls.getPalabras("verbos");
+    let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
+
+    this.setState({
+      verbo,
+      verbos
+    })
   }
 
   async loadPalabra(p = "prefixSuffixRoots/", pId = "5a6d123f4f90e60fe36db2d3"){
@@ -101,7 +121,6 @@ class App extends Component {
       currentUser = await authCalls.signIn(user);
     }
     this.setState({
-      // showAuthForm: false,
       showLoginForm: false,
       showSignUpForm: false,
       user: currentUser
@@ -162,7 +181,12 @@ class App extends Component {
             /> :
             null
         }
-        <Main props={ this.state }/>
+        <Main
+          props={ this.state }
+          onLoadRandomFourLetterWords={ this.handleLoadRandomFourLetterWords }
+          onLoadRandomPrefixSuffixRoots={ this.handleLoadRandomPrefixSuffixRoots }
+          onLoadRandomVerbos={ this.handleLoadRandomVerbos }
+          />
       </div>
     );
   }

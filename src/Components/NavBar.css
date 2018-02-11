@@ -43,7 +43,7 @@ li {
 }
 
 .menu-item { /* child of .random-word; cousin of .menu-item */
-  display: none;
+  display: flex;
   text-decoration: none;
   color: white;
   margin: 0;
