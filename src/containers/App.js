@@ -25,6 +25,7 @@ class App extends Component {
       verbo: {},
       verbos: []
     }
+    this.handleSave = this.handleSave.bind(this);
     this.handleAuth = this.handleAuth.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
     this.handleLoadRandomFourLetterWords = this.handleLoadRandomFourLetterWords.bind(this);
@@ -93,7 +94,7 @@ class App extends Component {
     // this.setState({ `${pal}`: palabra })
   }
 
-  async addPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
+  async handleAddPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
     let newPalabra = await apiCalls.createPalabra(p, pObj);
     this.setState({ fourLetterWord: newPalabra });
     console.log(newPalabra);
@@ -108,7 +109,7 @@ class App extends Component {
   }
 
   handleSave=(p, pObj) => {
-    this.addPalabra(p, pObj);
+    this.handleAddPalabra(p, pObj);
     console.log(p, pObj);
     //route to new palabra after this.addPalabra is finished or form if errors
   }
@@ -183,6 +184,7 @@ class App extends Component {
         }
         <Main
           props={ this.state }
+          onSave={ this.handleSave }
           onLoadRandomFourLetterWords={ this.handleLoadRandomFourLetterWords }
           onLoadRandomPrefixSuffixRoots={ this.handleLoadRandomPrefixSuffixRoots }
           onLoadRandomVerbos={ this.handleLoadRandomVerbos }

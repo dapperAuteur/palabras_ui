@@ -37,6 +37,27 @@ const NavBar = (props) => {
                Verbo
              </Link>
             </span>
+            <span className="create-word">
+              <button className='btn  btn-default'>Create</button>
+              <Link
+               to={ '/words/new/four-letter-word' }
+               id="newFourLetterWords"
+               className="menu-item">
+               Create Four Letter Word
+              </Link>
+              <Link
+               to={ '/words/new/prefix-suffix-root' }
+               id="newPrefixSuffixRoots"
+               className="menu-item">
+               Create Prefix Suffix Root
+             </Link>
+             <Link
+               to={ '/words/new/verbo' }
+               id="newVerbos"
+               className="menu-item">
+               Create Verbo
+             </Link>
+            </span>
             <span className="games">
               <button className='btn  btn-default'>Games</button>
               <Link

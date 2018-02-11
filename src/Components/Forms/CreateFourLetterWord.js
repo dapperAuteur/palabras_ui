@@ -18,7 +18,7 @@ class CreateFourLetterWords extends Component {
     e.preventDefault();
     let { p, ...pObj } = { p, ...this.state };
     console.log(p, pObj);
-    this.props.onSave(p, pObj);
+    this.props.data.onSave(p, pObj);
     this.setState({
       word: '',
       tongue: ''
@@ -30,6 +30,7 @@ class CreateFourLetterWords extends Component {
   }
   render() {
     const { word, tongue } = this.state;
+    const onSave = this.props.data.onSave;
     return (
       <div className='word-form-container'>
         <form className='word-form' onSubmit={ this.handleSubmit }>
@@ -72,7 +73,7 @@ class CreateFourLetterWords extends Component {
 
 CreateFourLetterWords.propTypes = {
   p: PropTypes.string.isRequired,
-  word: PropTypes.string.isRequired,
+  word: PropTypes.string,
   tongue: PropTypes.string
 }
 

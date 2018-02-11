@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
+import CreateFourLetterWord from './../components/Forms/CreateFourLetterWord';
+import CreatePrefixSuffixRoot from '../components/Forms/CreatePrefixSuffixRoot';
+import CreateVerbo from './../components/Forms/CreateVerbo';
 import DetailsFourLetterWord from './../components/FourLetterWords/DetailsFourLetterWord';
-import DetailsVerbo from './../components/Verbos/DetailsVerbo';
 import DetailsPrefixSuffixRoot from '../components/PrefixSuffixRoots/DetailsPrefixSuffixRoot';
+import DetailsVerbo from './../components/Verbos/DetailsVerbo';
 
 const routes = [
+  {
+    path: '/words/new/four-letter-word',
+    component: CreateFourLetterWord,
+    data: this.props
+  },
+  {
+    path: '/words/new/prefix-suffix-root',
+    component: CreatePrefixSuffixRoot,
+    data: this.props
+  },
+  {
+    path: '/words/new/verbo',
+    component: CreateVerbo,
+    data: this.props
+  },
   {
     path: '/words/four-letter-word',
     component: DetailsFourLetterWord,
@@ -23,7 +41,7 @@ const routes = [
 ]
 
 class Main extends Component {
-  
+
   componentWillMount(){
     console.log(this.props);
   }
