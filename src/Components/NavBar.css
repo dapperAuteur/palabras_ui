@@ -1,32 +1,7 @@
-a:hover {
-  opacity: 1;
-}
-
-.navbar {
-  display: flex;
-  align-self: flex-start;
-  padding: 35px 50px 0;
-  flex: 0 0 100%;
-}
-
 li {
   list-style: none;
   text-decoration: none;
   padding-left: 30px;
-}
-
-.container-fluid {
-  display: flex;
-  justify-content: space-between;
-  flex: 0 0 100%;
-}
-
-.nav {
-  display: flex;
-  align-self: flex-end;
-}
-.navbar-header {
-  align-self: flex-start;
 }
 
 .btn {
@@ -36,15 +11,62 @@ li {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.btn:hover {
-  background-color: blue;
-  border-width: medium;
+
+
+.navbar { /* parent of all including single child .container-fluid; no siblings */
+  display: flex;
+  align-self: flex-start;
+  padding: 35px 50px 0;
+  flex: 1 1 100%;
+  border: solid;
 }
 
-.menu-item {
+.container-fluid { /* parent of .user-token & .navbar-header; child of .navbar navbar-default */
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 100%;
+}
+
+
+.navbar-header { /* sibling to .user-token; child of .container-fluid; parent of .random-word, .games, and .words; grandparent of .menu-item */
+  display: flex;
+  justify-content: space-around;
+  align-self: flex-start;
+  max-width: 800px;
+  flex: 2 2 66.67%;
+}
+
+.random-word .games {
+  align-self: flex-start;
+  justify-content: space-around;
+  flex: 0 0 100%;
+}
+
+.menu-item { /* child of .random-word; cousin of .menu-item */
+  display: none;
   text-decoration: none;
   color: white;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.menu-item:hover {
+  display: flex;
+}
+
+.user-token { /* sibling to .navbar-header; child of .container-fluid; parent of .nav */
+  display: flex;
+  align-self: flex-end;
+  align-items: flex-end;
+  flex: 3 3 33.33%;
+}
+
+.nav { /* child of .user-token, there are two */
+  display: flex;
+  align-self: flex-end;
+}
+
+@media (max-width: 800px){
+
 }
