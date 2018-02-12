@@ -28,6 +28,9 @@ class App extends Component {
     this.handleSave = this.handleSave.bind(this);
     this.handleAuth = this.handleAuth.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleLoadFourLetterWords = this.handleLoadFourLetterWords.bind(this);
+    this.handleLoadPrefixSuffixRoots = this.handleLoadPrefixSuffixRoots.bind(this);
+    this.handleLoadVerbos = this.handleLoadVerbos.bind(this);
     this.handleLoadRandomFourLetterWords = this.handleLoadRandomFourLetterWords.bind(this);
     this.handleLoadRandomPrefixSuffixRoots = this.handleLoadRandomPrefixSuffixRoots.bind(this);
     this.handleLoadRandomVerbos = this.handleLoadRandomVerbos.bind(this);
@@ -52,39 +55,79 @@ class App extends Component {
 
   async loadRandomPalabras(){
 
-    this.handleLoadRandomFourLetterWords();
-    this.handleLoadRandomPrefixSuffixRoots();
-    this.handleLoadRandomVerbos();
+    this.handleLoadFourLetterWords();
+    this.handleLoadPrefixSuffixRoots();
+    this.handleLoadVerbos();
 
   }
 
-  async handleLoadRandomFourLetterWords(){
+  async handleLoadFourLetterWords () {
     let fourLetterWords = await apiCalls.getPalabras("fourLetterWords");
-    let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
 
     this.setState({
-      fourLetterWord,
       fourLetterWords
     })
   }
 
-  async handleLoadRandomPrefixSuffixRoots(){
-    let prefixSuffixRoots = await apiCalls.getPalabras("prefixSuffixRoots");
-    let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+  async handleLoadRandomFourLetterWords(){
+    let fourLetterWords;
+    if (this.state.fourLetterWords) {
+      fourLetterWords = [...this.state.fourLetterWords];
+    } else {
+      this.handleLoadFourLetterWords();
+      this.handleLoadRandomFourLetterWords();
+    }
+
+    let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
 
     this.setState({
-      prefixSuffixRoot,
+      fourLetterWord
+    })
+  }
+
+  async handleLoadPrefixSuffixRoots(){
+    let prefixSuffixRoots = await apiCalls.getPalabras("prefixSuffixRoots");
+
+    this.setState({
       prefixSuffixRoots
     })
   }
 
-  async handleLoadRandomVerbos() {
+  async handleLoadRandomPrefixSuffixRoots(){
+    let prefixSuffixRoots;
+    if (this.state.prefixSuffixRoots) {
+      prefixSuffixRoots = [...this.state.prefixSuffixRoots];
+    } else {
+      this.handleLoadPrefixSuffixRoots();
+      this.handleLoadRandomPrefixSuffixRoots();
+    }
+    let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+
+    this.setState({
+      prefixSuffixRoot
+    });
+  }
+
+  async handleLoadVerbos() {
     let verbos = await apiCalls.getPalabras("verbos");
+
+    this.setState({
+      verbos
+    })
+  }
+
+  async handleLoadRandomVerbos() {
+    let verbos;
+    if (this.state.verbos) {
+      verbos = [...this.state.verbos];
+    } else {
+      this.handleLoadVerbos();
+      this.handleLoadRandomVerbos();
+    }
     let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
 
     this.setState({
-      verbo,
-      verbos
+      verbo
     })
   }
 
