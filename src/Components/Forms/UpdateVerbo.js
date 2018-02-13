@@ -27,11 +27,25 @@ class UpdateVerbo extends Component {
 
   handleChange(e){
     console.log(e.target.name);
-    if (e.target.name === "spanish") {
-      console.log("obj");
+    if (e.target.name === "cambiar_de_irregular") {
+      this.setState({ cambiar_de_irregular: e.target.value });
+    } else if (e.target.name === "categoría_de_irregular") {
+      this.setState({ categoría_de_irregular: e.target.value });
+    } else if (e.target.name === "english") {
+      this.setState({ english: e.target.value });
+    } else if (e.target.name === "grupo") {
+      this.setState({ grupo: e.target.value });
+    } else if (e.target.name === "irregular") {
+      this.setState({ irregular: e.target.value });
+    } else if (e.target.name === "reflexive") {
+      this.setState({ reflexive: e.target.value });
+    } else if (e.target.name === "spanish") {
       this.setState({ spanish: e.target.value });
+    } else if (e.target.name === "terminación") {
+      this.setState({ terminación: e.target.value });
+    } else {
+      console.log("no matching name");
     }
-    // this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(e){

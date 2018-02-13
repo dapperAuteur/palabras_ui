@@ -144,7 +144,8 @@ class App extends Component {
   }
 
 //line 62 may be broken
-  async updatePalabra(p = "verbos/", pObj = { _id: "", spanish: "asdf" }) {
+  async handleUpdatePalabra(p = "verbos/", pObj) {
+    console.log(p, pObj);
     let updatedPalabra = await apiCalls.updatePalabra(p, pObj);
     let params = p.slice(0, -1);
     const palabras = this.state[params].map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
@@ -156,10 +157,10 @@ class App extends Component {
     if (pObj.hasOwnProperty('_id')) {
       console.log(pObj._id);
       console.log(pObj);
-      // this.handleUpdatePalabra(p, pObj);
+      this.handleUpdatePalabra(p, pObj);
     } else {
       console.log("no _id");
-      // this.handleAddPalabra(p, pObj);
+      this.handleAddPalabra(p, pObj);
     }
     console.log(p, pObj);
     //route to new palabra after this.addPalabra is finished or form if errors
