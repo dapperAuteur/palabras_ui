@@ -6,15 +6,15 @@ class CreateVerbo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      p: 'verbos/',
-      spanish: '',
-      english: '',
-      reflexive: false,
-      irregular: false,
-      categoría_de_irregular: '',
       cambiar_de_irregular: '',
-      terminación: '',
-      grupo: 0
+      categoría_de_irregular: '',
+      english: '',
+      grupo: 0,
+      irregular: false,
+      p: 'verbos/',
+      reflexive: false,
+      spanish: '',
+      terminación: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,16 +28,18 @@ class CreateVerbo extends Component {
     e.preventDefault();
     let { p, ...pObj } = { p, ...this.state };
     console.log(p, pObj);
-    this.props.onSave(p, pObj);
+
+    this.props.data.onSave(p, pObj);
     this.setState({
-      spanish: '',
-      english: '',
-      reflexive: false,
-      irregular: false,
-      categoría_de_irregular: '',
       cambiar_de_irregular: '',
-      terminación: '',
-      grupo: 0
+      categoría_de_irregular: '',
+      english: '',
+      grupo: 0,
+      irregular: false,
+      p: 'verbos/',
+      reflexive: false,
+      spanish: '',
+      terminación: ''
     });
   }
 

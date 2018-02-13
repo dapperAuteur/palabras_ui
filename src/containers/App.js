@@ -152,7 +152,15 @@ class App extends Component {
   }
 
   handleSave=(p, pObj) => {
-    this.handleAddPalabra(p, pObj);
+    // if pObj has _id property call update, otherwise call add
+    if (pObj.hasOwnProperty('_id')) {
+      console.log(pObj._id);
+      console.log(pObj);
+      // this.handleUpdatePalabra(p, pObj);
+    } else {
+      console.log("no _id");
+      // this.handleAddPalabra(p, pObj);
+    }
     console.log(p, pObj);
     //route to new palabra after this.addPalabra is finished or form if errors
   }

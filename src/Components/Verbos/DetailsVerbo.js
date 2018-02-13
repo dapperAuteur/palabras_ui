@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DetailsVerbo = (props) => {
   // let { verbo } = { ...props };
@@ -19,6 +20,16 @@ const DetailsVerbo = (props) => {
         className="btn btn-default">
         Next Verbo
       </button>
+      { verbo.spanish === '' ?
+        null
+        :
+        <Link
+          to={ '/words/update/verbo' }
+          id="UpdateVerbo"
+          className="btn btn-default">
+          EDIT
+        </Link>
+      }
     </div>
   )
 }
