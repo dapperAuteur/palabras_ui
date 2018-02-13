@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const DetailsPrefixSuffixRoot = (props) => {
-  // let { prefixSuffixRoot } = { ...props };
   const prefixSuffixRoot = props.data.props.prefixSuffixRoot;
   const onLoadRandomPrefixSuffixRoots = props.data.onLoadRandomPrefixSuffixRoots;
 
@@ -16,6 +16,16 @@ const DetailsPrefixSuffixRoot = (props) => {
           className="btn btn-default">
           Next Prefix Suffix or Root
         </button>
+        { prefixSuffixRoot.word === '' ?
+          null
+          :
+          <Link
+            to={ '/words/update/prefix-suffix-root' }
+            id="UpdatePrefixSuffixRoot"
+            className="btn btn-default">
+            EDIT
+          </Link>
+        }
     </div>
   )
 }
