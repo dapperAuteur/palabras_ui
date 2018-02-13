@@ -130,11 +130,12 @@ class App extends Component {
       verbo
     })
   }
-
+// NOT WORKING
   async loadPalabra(p = "prefixSuffixRoots/", pId = "5a6d123f4f90e60fe36db2d3"){
     // let palabra = await apiCalls.getPalabra(p, pId);
     // let pal = p.slice(0, -1);
-    // this.setState({ `${pal}`: palabra })
+    // this.setState({ pal: palabra });
+    // console.log(pal, palabra,this.state);
   }
 
   async handleAddPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
@@ -149,13 +150,10 @@ class App extends Component {
     let params = p.slice(0, -1);
     const palabras = this.state[params].map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
     this.setState({ palabras });
-    console.log(updatedPalabra, palabras);
   }
 
   handleSave=(p, pObj) => {
-    // if pObj has _id property call update, otherwise call add
     if (pObj.hasOwnProperty('_id')) {
-      console.log(pObj._id);
       console.log(pObj);
       this.handleUpdatePalabra(p, pObj);
     } else {

@@ -15,6 +15,12 @@ const NavBar = (props) => {
                 className="">
                 Palabras
               </Link>
+              <Link
+                to={ '/games/new/four-letter-word' }
+                className="menu-item"
+              >
+                Four Letter Word Game
+              </Link>
             </span>
             <span className="random-word">
               <button className='btn  btn-default'>Words</button>

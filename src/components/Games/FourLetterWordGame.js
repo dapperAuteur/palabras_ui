@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Letter from '../FourLetterWords/Letter';
+import Letters from './Letters';
 import './Game.css';
 
 class FourLetterWordGame extends Component {
@@ -11,10 +11,7 @@ class FourLetterWordGame extends Component {
   render() {
     return (
       <div className="game">
-        <Letter />
-        <Letter />
-        <Letter />
-        <Letter />
+        <Letters />
       </div>
     )
   }
