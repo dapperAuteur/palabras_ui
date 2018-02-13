@@ -6,6 +6,8 @@ import CreateVerbo from './../components/Forms/CreateVerbo';
 import DetailsFourLetterWord from './../components/FourLetterWords/DetailsFourLetterWord';
 import DetailsPrefixSuffixRoot from '../components/PrefixSuffixRoots/DetailsPrefixSuffixRoot';
 import DetailsVerbo from './../components/Verbos/DetailsVerbo';
+import UpdateFourLetterWord from './../components/Forms/UpdateFourLetterWord';
+import UpdatePrefixSuffixRoot from '../components/Forms/UpdatePrefixSuffixRoot';
 import UpdateVerbo from './../components/Forms/UpdateVerbo';
 
 const routes = [
@@ -37,6 +39,16 @@ const routes = [
   {
     path: '/words/prefix-suffix-root',
     component: DetailsPrefixSuffixRoot,
+    data: this.props
+  },
+  {
+    path: '/words/update/four-letter-word',
+    component: UpdateFourLetterWord,
+    data: this.props
+  },
+  {
+    path: '/words/update/prefix-suffix-root',
+    component: UpdatePrefixSuffixRoot,
     data: this.props
   },
   {

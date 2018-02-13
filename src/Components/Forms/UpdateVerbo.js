@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../CSS/Form.css';
 
@@ -7,16 +8,16 @@ class UpdateVerbo extends Component {
     super(props);
     const { _id, spanish, english, reflexive, irregular, categoría_de_irregular, cambiar_de_irregular, terminación, grupo } = this.props.data.props.verbo;
     this.state = {
-      _id: _id,
-      cambiar_de_irregular: cambiar_de_irregular,
-      categoría_de_irregular: categoría_de_irregular,
-      english: english,
-      grupo: grupo,
-      irregular: irregular,
+      _id,
+      cambiar_de_irregular,
+      categoría_de_irregular,
+      english,
+      grupo,
+      irregular,
       p: 'verbos/',
-      reflexive: reflexive,
-      spanish: spanish,
-      terminación: terminación,
+      reflexive,
+      spanish,
+      terminación,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,26 +27,26 @@ class UpdateVerbo extends Component {
   }
 
   handleChange(e){
-    console.log(e.target.name);
-    if (e.target.name === "cambiar_de_irregular") {
-      this.setState({ cambiar_de_irregular: e.target.value });
-    } else if (e.target.name === "categoría_de_irregular") {
-      this.setState({ categoría_de_irregular: e.target.value });
-    } else if (e.target.name === "english") {
-      this.setState({ english: e.target.value });
-    } else if (e.target.name === "grupo") {
-      this.setState({ grupo: e.target.value });
-    } else if (e.target.name === "irregular") {
-      this.setState({ irregular: e.target.value });
-    } else if (e.target.name === "reflexive") {
-      this.setState({ reflexive: e.target.value });
-    } else if (e.target.name === "spanish") {
-      this.setState({ spanish: e.target.value });
-    } else if (e.target.name === "terminación") {
-      this.setState({ terminación: e.target.value });
-    } else {
-      console.log("no matching name");
-    }
+    // if (e.target.name === "cambiar_de_irregular") {
+    //   this.setState({ cambiar_de_irregular: e.target.value });
+    // } else if (e.target.name === "categoría_de_irregular") {
+    //   this.setState({ categoría_de_irregular: e.target.value });
+    // } else if (e.target.name === "english") {
+    //   this.setState({ english: e.target.value });
+    // } else if (e.target.name === "grupo") {
+    //   this.setState({ grupo: e.target.value });
+    // } else if (e.target.name === "irregular") {
+    //   this.setState({ irregular: e.target.value });
+    // } else if (e.target.name === "reflexive") {
+    //   this.setState({ reflexive: e.target.value });
+    // } else if (e.target.name === "spanish") {
+    //   this.setState({ spanish: e.target.value });
+    // } else if (e.target.name === "terminación") {
+    //   this.setState({ terminación: e.target.value });
+    // } else {
+    //   console.log("no matching name");
+    // }
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(e){
@@ -53,16 +54,6 @@ class UpdateVerbo extends Component {
     let { p, ...pObj } = { p, ...this.state };
     console.log(p, pObj);
     this.props.data.onSave(p, pObj);
-    this.setState({
-      cambiar_de_irregular: '',
-      categoría_de_irregular: '',
-      english: '',
-      grupo: 0,
-      irregular: false,
-      reflexive: false,
-      spanish: '',
-      terminación: ''
-    })
   }
 
   render(){
@@ -170,6 +161,12 @@ class UpdateVerbo extends Component {
           >
             UPDATE
           </button>
+          <Link
+            to={ '/words/verbo' }
+            id="Verbos"
+            className="btn btn-default">
+            CANCEL
+          </Link>
         </form>
       </div>
     )
@@ -203,4 +200,4 @@ UpdateVerbo.defaultProps = {
   terminación: '-ar'
 }
 
-export default UpdateVerbo
+export default UpdateVerbo;

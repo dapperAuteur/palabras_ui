@@ -20,13 +20,13 @@ const NavBar = (props) => {
               <button className='btn  btn-default'>Words</button>
               <Link
                to={ '/words/four-letter-word' }
-               id="fourLetterWords"
+               id="FourLetterWords"
                className="menu-item">
                Four Letter Word
               </Link>
               <Link
                to={ '/words/prefix-suffix-root' }
-               id="prefixSuffixRoots"
+               id="PrefixSuffixRoots"
                className="menu-item">
                Prefix Suffix Root
              </Link>

@@ -149,7 +149,7 @@ class App extends Component {
     let updatedPalabra = await apiCalls.updatePalabra(p, pObj);
     let params = p.slice(0, -1);
     const palabras = this.state[params].map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
-    this.setState({ palabras })
+    this.setState({ palabras });
   }
 
   handleSave=(p, pObj) => {
