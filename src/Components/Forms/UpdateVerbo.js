@@ -5,24 +5,33 @@ import '../CSS/Form.css';
 class UpdateVerbo extends Component {
   constructor(props) {
     super(props);
+    const { _id, spanish, english, reflexive, irregular, categoría_de_irregular, cambiar_de_irregular, terminación, grupo } = this.props.data.props.verbo;
     this.state = {
-      _id: '',
-      cambiar_de_irregular: '',
-      categoría_de_irregular: '',
-      english: '',
-      grupo: 0,
-      irregular: false,
+      _id: _id,
+      cambiar_de_irregular: cambiar_de_irregular,
+      categoría_de_irregular: categoría_de_irregular,
+      english: english,
+      grupo: grupo,
+      irregular: irregular,
       p: 'verbos/',
-      reflexive: false,
-      spanish: '',
-      terminación: '',
+      reflexive: reflexive,
+      spanish: spanish,
+      terminación: terminación,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  componentWillMount(){
+    console.log(this.props);
+  }
 
   handleChange(e){
-    this.setState({ [e.target.name]: e.target.value });
+    console.log(e.target.name);
+    if (e.target.name === "spanish") {
+      console.log("obj");
+      this.setState({ spanish: e.target.value });
+    }
+    // this.setState({ [e.target.name]: e.target.value });
   }
 
   handleSubmit(e){
@@ -43,9 +52,7 @@ class UpdateVerbo extends Component {
   }
 
   render(){
-    const { spanish, english, reflexive, irregular, categoría_de_irregular, cambiar_de_irregular, terminación, grupo } = this.state;
-    const verbo = this.props.data.props.verbo;
-    console.log(verbo);
+    const { _id, spanish, english, reflexive, irregular, categoría_de_irregular, cambiar_de_irregular, terminación, grupo } = this.state;
     return (
       <div className='word-form-conatiner'>
         <form className='word-form' onSubmit={ this.handleSubmit }>
@@ -56,7 +63,7 @@ class UpdateVerbo extends Component {
               key='spanish'
               name='spanish'
               type='text'
-              value={ verbo.spanish }
+              value={ spanish }
               size={ 15 }
               autoComplete="off"
               onChange={ this.handleChange } />
@@ -68,7 +75,7 @@ class UpdateVerbo extends Component {
               key='english'
               name='english'
               type='text'
-              value={ verbo.english }
+              value={ english }
               size={ 15 }
               autoComplete="off"
               onChange={ this.handleChange } />
@@ -80,7 +87,7 @@ class UpdateVerbo extends Component {
               key='reflexive'
               name='reflexive'
               type='boolean'
-              value={ verbo.reflexive }
+              value={ reflexive }
               size={ 10 }
               onChange={ this.handleChange } />
           </div>
@@ -91,7 +98,7 @@ class UpdateVerbo extends Component {
               key='irregular'
               name='irregular'
               type='boolean'
-              value={ verbo.irregular }
+              value={ irregular }
               size={ 10 }
               onChange={ this.handleChange } />
           </div>
@@ -102,7 +109,7 @@ class UpdateVerbo extends Component {
               key='categoría_de_irregular'
               name='categoría_de_irregular'
               type='text'
-              value={ verbo.categoría_de_irregular }
+              value={ categoría_de_irregular }
               size={ 10 }
               autoComplete="off"
               onChange={ this.handleChange } />
@@ -114,7 +121,7 @@ class UpdateVerbo extends Component {
               key='cambiar_de_irregular'
               name='cambiar_de_irregular'
               type='text'
-              value={ verbo.cambiar_de_irregular }
+              value={ cambiar_de_irregular }
               size={ 10 }
               autoComplete="off"
               onChange={ this.handleChange } />
@@ -126,7 +133,7 @@ class UpdateVerbo extends Component {
               key='terminación'
               name='terminación'
               type='text'
-              value={ verbo.terminación }
+              value={ terminación }
               size={ 10 }
               autoComplete="off"
               onChange={ this.handleChange } />
@@ -138,7 +145,7 @@ class UpdateVerbo extends Component {
               key='grupo'
               name='grupo'
               type='decimal'
-              value={ verbo.grupo }
+              value={ grupo }
               autoComplete="off"
               onChange={ this.handleChange } />
           </div>
