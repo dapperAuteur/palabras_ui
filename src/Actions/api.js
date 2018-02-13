@@ -85,7 +85,8 @@ export async function removePalabra(p, pId) {
 }
 
 export async function updatePalabra(p, pObj) {
-  return fetch(`${APIURL}${p}${pObj}._id`, {
+  console.log(`${APIURL}${p}${pObj._id}`);
+  return fetch(`${APIURL}${p}${pObj._id}`, {
     method: 'put',
     headers: new Headers({
       'Content-Type': 'application/json'

@@ -9,6 +9,7 @@ class UpdateFourLetterWord extends Component {
     const { _id, word, definition, f_points, in_game, s_points, tier, tongue } = this.props.data.props.fourLetterWord;
     this.state = {
       _id,
+      p: 'fourLetterWords/',
       word,
       definition,
       f_points,
@@ -141,6 +142,7 @@ class UpdateFourLetterWord extends Component {
 
 UpdateFourLetterWord.propTypes = {
   _id: PropTypes.string.isRequired,
+  p: PropTypes.string.isRequired,
   definition: PropTypes.string,
   f_points: PropTypes.number,
   in_game: PropTypes.bool,
@@ -152,6 +154,7 @@ UpdateFourLetterWord.propTypes = {
 UpdateFourLetterWord.defaultProps = {
   onSave() {},
   _id: '',
+  p: 'fourLetterWords/',
   definition: '',
   f_points: 3,
   in_game: false,

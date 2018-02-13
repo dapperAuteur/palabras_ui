@@ -143,13 +143,13 @@ class App extends Component {
     console.log(newPalabra);
   }
 
-//line 62 may be broken
   async handleUpdatePalabra(p = "verbos/", pObj) {
     console.log(p, pObj);
     let updatedPalabra = await apiCalls.updatePalabra(p, pObj);
     let params = p.slice(0, -1);
     const palabras = this.state[params].map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
     this.setState({ palabras });
+    console.log(updatedPalabra, palabras);
   }
 
   handleSave=(p, pObj) => {
