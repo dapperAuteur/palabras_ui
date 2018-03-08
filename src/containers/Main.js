@@ -14,57 +14,50 @@ import FourLetterWordGame from '../components/Games/FourLetterWordGame';
 const routes = [
   {
     path: '/games/new/four-letter-word',
-    component: FourLetterWordGame,
-    data: this.props
+    component: FourLetterWordGame
   },
   {
     path: '/words/new/four-letter-word',
-    component: CreateFourLetterWord,
-    data: this.props
+    component: CreateFourLetterWord
   },
   {
     path: '/words/new/prefix-suffix-root',
-    component: CreatePrefixSuffixRoot,
-    data: this.props
+    component: CreatePrefixSuffixRoot
   },
   {
     path: '/words/new/verbo',
-    component: CreateVerbo,
-    data: this.props
+    component: CreateVerbo
   },
   {
     path: '/words/four-letter-word',
-    component: DetailsFourLetterWord,
-    data: this.props
+    component: DetailsFourLetterWord
   },
   {
     path: '/words/verbo',
-    component: DetailsVerbo,
-    data: this.props
+    component: DetailsVerbo
   },
   {
     path: '/words/prefix-suffix-root',
-    component: DetailsPrefixSuffixRoot,
-    data: this.props
+    component: DetailsPrefixSuffixRoot
   },
   {
     path: '/words/update/four-letter-word',
-    component: UpdateFourLetterWord,
-    data: this.props
+    component: UpdateFourLetterWord
   },
   {
     path: '/words/update/prefix-suffix-root',
-    component: UpdatePrefixSuffixRoot,
-    data: this.props
+    component: UpdatePrefixSuffixRoot
   },
   {
     path: '/words/update/verbo',
-    component: UpdateVerbo,
-    data: this.props
+    component: UpdateVerbo
   }
 ]
 
 class Main extends Component {
+  constructor(props){
+    super(props);
+  }
 
   componentWillMount(){
     console.log(this.props);

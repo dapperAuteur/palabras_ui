@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DetailsVerbo = (props) => {
-  // let { verbo } = { ...props };
   const verbo = props.data.props.verbo;
-  const onLoadRandomVerbos = props.data.onLoadRandomVerbos;
+  const onLoadRandomVerbo = props.data.onLoadRandomVerbo;
 
   return (
     <div>
@@ -16,7 +15,7 @@ const DetailsVerbo = (props) => {
       <h3>Categoría de Irregular: { verbo.categoría_de_irregular }</h3>
       <h3>Cambiar de Irregular: { verbo.cambiar_de_irregular }</h3>
       <button
-        onClick={ onLoadRandomVerbos }
+        onClick={ onLoadRandomVerbo }
         className="btn btn-default">
         Next Verbo
       </button>

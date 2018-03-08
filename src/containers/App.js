@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import shuffle from 'shuffle-array';
 import * as apiCalls from './../actions/api';
 import * as authCalls from './../actions/authApi';
@@ -31,22 +31,40 @@ class App extends Component {
     this.handleLoadFourLetterWords = this.handleLoadFourLetterWords.bind(this);
     this.handleLoadPrefixSuffixRoots = this.handleLoadPrefixSuffixRoots.bind(this);
     this.handleLoadVerbos = this.handleLoadVerbos.bind(this);
-    this.handleLoadRandomFourLetterWords = this.handleLoadRandomFourLetterWords.bind(this);
-    this.handleLoadRandomPrefixSuffixRoots = this.handleLoadRandomPrefixSuffixRoots.bind(this);
-    this.handleLoadRandomVerbos = this.handleLoadRandomVerbos.bind(this);
+    this.handleLoadRandomFourLetterWord = this.handleLoadRandomFourLetterWord.bind(this);
+    this.handleLoadRandomPrefixSuffixRoot = this.handleLoadRandomPrefixSuffixRoot.bind(this);
+    this.handleLoadRandomVerbo = this.handleLoadRandomVerbo.bind(this);
   }
 
   componentWillMount(){
-    let user;
     this.loadRandomPalabras();
-    if (typeof(Storage) !== "undefined") {
-      user = JSON.parse(localStorage.getItem("user"));
-      if (user.hasOwnProperty('token')) {
-        this.setState({
-          user
-        });
-      }
-    }
+    console.log(this.state);
+    // if (this.state.fourLetterWord === {}) {
+    // } else {
+    //   this.handleLoadRandomFourLetterWord();
+    // }
+    // if (this.state.prefixSuffixRoot === {}) {
+    //
+    // } else {
+    //   this.handleLoadRandomPrefixSuffixRoot();
+    // }
+    // if (this.state.verbo === {}) {
+    //
+    // } else {
+    //   this.handleLoadRandomVerbo();
+    //   console.log(this.state.verbo);
+    // }
+    console.log("component will mount");
+    let user;
+
+    // if (typeof(Storage) !== "undefined") {
+    //   user = JSON.parse(localStorage.getItem("user"));
+    //   if (user.hasOwnProperty('token')) {
+    //     this.setState({
+    //       user
+    //     });
+    //   }
+    // }
     this.loadUser();
   }
 
@@ -58,7 +76,6 @@ class App extends Component {
     this.handleLoadFourLetterWords();
     this.handleLoadPrefixSuffixRoots();
     this.handleLoadVerbos();
-
   }
 
   async handleLoadFourLetterWords () {
@@ -67,22 +84,23 @@ class App extends Component {
     this.setState({
       fourLetterWords
     })
+    localStorage.setItem("fourLetterWords", JSON.stringify(fourLetterWords));
   }
 
-  async handleLoadRandomFourLetterWords(){
+  async handleLoadRandomFourLetterWord(){
     let fourLetterWords;
     if (this.state.fourLetterWords) {
       fourLetterWords = [...this.state.fourLetterWords];
     } else {
       this.handleLoadFourLetterWords();
-      this.handleLoadRandomFourLetterWords();
+      this.handleLoadRandomFourLetterWord();
     }
-
     let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
 
     this.setState({
       fourLetterWord
     })
+    localStorage.setItem("fourLetterWord", JSON.stringify(fourLetterWord));
   }
 
   async handleLoadPrefixSuffixRoots(){
@@ -91,21 +109,25 @@ class App extends Component {
     this.setState({
       prefixSuffixRoots
     })
+    localStorage.setItem("prefixSuffixRoots", JSON.stringify(prefixSuffixRoots));
   }
 
-  async handleLoadRandomPrefixSuffixRoots(){
+  async handleLoadRandomPrefixSuffixRoot(){
     let prefixSuffixRoots;
     if (this.state.prefixSuffixRoots) {
       prefixSuffixRoots = [...this.state.prefixSuffixRoots];
     } else {
       this.handleLoadPrefixSuffixRoots();
-      this.handleLoadRandomPrefixSuffixRoots();
+      this.handleLoadRandomPrefixSuffixRoot();
     }
     let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
 
     this.setState({
       prefixSuffixRoot
     });
+    if (prefixSuffixRoot !== undefined) {
+      localStorage.setItem("prefixSuffixRoot", JSON.stringify(prefixSuffixRoot));
+    }
   }
 
   async handleLoadVerbos() {
@@ -113,22 +135,24 @@ class App extends Component {
 
     this.setState({
       verbos
-    })
+    });
+    localStorage.setItem("verbos", JSON.stringify(verbos));
   }
 
-  async handleLoadRandomVerbos() {
+  async handleLoadRandomVerbo() {
     let verbos;
     if (this.state.verbos) {
       verbos = [...this.state.verbos];
     } else {
       this.handleLoadVerbos();
-      this.handleLoadRandomVerbos();
+      this.handleLoadRandomVerbo();
     }
     let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
 
     this.setState({
       verbo
     })
+    localStorage.setItem("verbo", JSON.stringify(verbo));
   }
 // NOT WORKING
   async loadPalabra(p = "prefixSuffixRoots/", pId = "5a6d123f4f90e60fe36db2d3"){
@@ -141,27 +165,28 @@ class App extends Component {
   async handleAddPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
     let newPalabra = await apiCalls.createPalabra(p, pObj);
     this.setState({ fourLetterWord: newPalabra });
-    console.log(newPalabra);
   }
 
   async handleUpdatePalabra(p = "verbos/", pObj) {
-    console.log(p, pObj);
     let updatedPalabra = await apiCalls.updatePalabra(p, pObj);
     let params = p.slice(0, -1);
     const palabras = this.state[params].map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
     this.setState({ palabras });
+    // localStorage.setItem("palabras", JSON.stringify(palabras));
   }
 
   handleSave=(p, pObj) => {
     if (pObj.hasOwnProperty('_id')) {
-      console.log(pObj);
       this.handleUpdatePalabra(p, pObj);
     } else {
-      console.log("no _id");
       this.handleAddPalabra(p, pObj);
     }
-    console.log(p, pObj);
+    this.handleRedirect(p, pObj);
     //route to new palabra after this.addPalabra is finished or form if errors
+  }
+
+  handleRedirect=(p, pObj) => {
+    <Redirect push to="/" />
   }
 
   async handleAuth(user) {
@@ -179,7 +204,6 @@ class App extends Component {
     if (typeof(Storage) !== "undefined") {
       localStorage.setItem("user", JSON.stringify(currentUser));
     } else {
-      console.log("no local storage");
     }
 
 
@@ -211,6 +235,9 @@ class App extends Component {
             showLoginForm: false,
             showSignUpForm: true
           }) }
+          onLoadRandomFourLetterWord={ this.handleLoadRandomFourLetterWord }
+          onLoadRandomPrefixSuffixRoot={ this.handleLoadRandomPrefixSuffixRoot }
+          onLoadRandomVerbo={ this.handleLoadRandomVerbo }
           />
         { showLoginForm || showSignUpForm ?
           <AuthForm
@@ -235,9 +262,9 @@ class App extends Component {
         <Main
           props={ this.state }
           onSave={ this.handleSave }
-          onLoadRandomFourLetterWords={ this.handleLoadRandomFourLetterWords }
-          onLoadRandomPrefixSuffixRoots={ this.handleLoadRandomPrefixSuffixRoots }
-          onLoadRandomVerbos={ this.handleLoadRandomVerbos }
+          onLoadRandomFourLetterWord={ this.handleLoadRandomFourLetterWord }
+          onLoadRandomPrefixSuffixRoot={ this.handleLoadRandomPrefixSuffixRoot }
+          onLoadRandomVerbo={ this.handleLoadRandomVerbo }
           />
       </div>
     );

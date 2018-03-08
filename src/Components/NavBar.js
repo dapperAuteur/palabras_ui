@@ -3,7 +3,15 @@ import { Link } from 'react-router-dom';
 import './NavBar.css';
 
 const NavBar = (props) => {
-  const { user, onLogout, onShowLoginForm, onShowSignUpForm } = props;
+  const {
+    user,
+    onLoadRandomFourLetterWord,
+    onLoadRandomPrefixSuffixRoot,
+    onLoadRandomVerbo,
+    onLogout,
+    onShowLoginForm,
+    onShowSignUpForm
+  } = props;
 
   return (
     <nav className='navbar navbar-default'>
@@ -32,6 +40,7 @@ const NavBar = (props) => {
               </Link>
               <Link
                to={ '/words/prefix-suffix-root' }
+               innerRef={ onLoadRandomPrefixSuffixRoot }
                id="PrefixSuffixRoots"
                className="menu-item">
                Prefix Suffix Root

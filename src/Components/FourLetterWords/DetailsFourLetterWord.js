@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 const DetailsFourLetterWord = (props) => {
   const fourLetterWord = props.data.props.fourLetterWord;
-  const onLoadRandomFourLetterWords = props.data.onLoadRandomFourLetterWords;
+  const onLoadRandomFourLetterWord = props.data.onLoadRandomFourLetterWord;
+  console.log(fourLetterWord, props);
 
   return (
     <div>
@@ -11,7 +12,7 @@ const DetailsFourLetterWord = (props) => {
       <h3>Tier: { fourLetterWord.tier }</h3>
       <h3>Definition: { fourLetterWord.definition }</h3>
         <button
-          onClick={ onLoadRandomFourLetterWords }
+          onClick={ onLoadRandomFourLetterWord }
           className="btn btn-default">
           Next Four Letter Word
         </button>

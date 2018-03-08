@@ -35,6 +35,7 @@ class UpdateFourLetterWord extends Component {
     let { p, ...pObj } = { p, ...this.state };
     console.log(p, pObj);
     this.props.data.onSave(p, pObj);
+    this.props.history.push('/words/four-letter-word');
   }
 
   render(){
@@ -125,7 +126,8 @@ class UpdateFourLetterWord extends Component {
           <button
             type="submit"
             className="butons"
-            style={{ alignSelf: 'flex-end', marginRight: 0 }}>
+            style={{ alignSelf: 'flex-end', marginRight: 0 }}
+            >
             UPDATE
           </button>
           <Link
