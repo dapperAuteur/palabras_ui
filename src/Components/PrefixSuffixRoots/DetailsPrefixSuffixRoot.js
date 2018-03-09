@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DetailsPrefixSuffixRoot = (props) => {
-  let prefixSuffixRoot = props.data.props.prefixSuffixRoot;
+  const prefixSuffixRoot = props.data.props.prefixSuffixRoot;
   const onLoadRandomPrefixSuffixRoot = props.data.onLoadRandomPrefixSuffixRoot;
   console.log(props);
+  console.log(prefixSuffixRoot);
   // if (prefixSuffixRoot === undefined) {
   //   prefixSuffixRoot = JSON.parse(localStorage.getItem("prefixSuffixRoot"));
   // }

@@ -41,6 +41,7 @@ class CreateVerbo extends Component {
       spanish: '',
       terminación: ''
     });
+    this.props.history.push('/words/verbo');
   }
 
   render(){

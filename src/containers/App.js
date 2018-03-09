@@ -164,14 +164,45 @@ class App extends Component {
 
   async handleAddPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
     let newPalabra = await apiCalls.createPalabra(p, pObj);
-    this.setState({ fourLetterWord: newPalabra });
+    let params = p.slice(0, -1);
+    switch (params) {
+      case "fourLetterWords":
+        this.setState({ fourLetterWord: newPalabra });
+        break;
+      case "prefixSuffixRoots":
+        this.setState({ prefixSuffixRoot: newPalabra });
+        break;
+      case "verbos":
+        this.setState({ verbo: newPalabra });
+        break;
+      default:
+
+    }
+    // this.setState({ fourLetterWord: newPalabra });
   }
 
   async handleUpdatePalabra(p = "verbos/", pObj) {
     let updatedPalabra = await apiCalls.updatePalabra(p, pObj);
     let params = p.slice(0, -1);
     const palabras = this.state[params].map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
-    this.setState({ palabras });
+    switch (params) {
+      case "fourLetterWords":
+        this.setState({ fourLetterWord: updatedPalabra });
+        break;
+      case "prefixSuffixRoots":
+        this.setState({ prefixSuffixRoot: updatedPalabra });
+        break;
+      case "verbos":
+        this.setState({ verbo: updatedPalabra });
+        break;
+      default:
+
+    }
+    // this.setState({
+    //   palabras,
+    //   params: updatedPalabra
+    //  });
+     console.log(params, updatedPalabra, palabras);
     // localStorage.setItem("palabras", JSON.stringify(palabras));
   }
 

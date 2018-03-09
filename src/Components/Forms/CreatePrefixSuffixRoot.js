@@ -33,6 +33,7 @@ class CreatePrefixSuffixRoot extends Component {
       type: '',
       tongue: ''
     });
+    this.props.history.push('/words/prefix-suffix-root');
   }
 
   render(){

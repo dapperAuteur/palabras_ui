@@ -23,6 +23,7 @@ class CreateFourLetterWords extends Component {
       word: '',
       tongue: ''
     });
+    this.props.history.push('/words/four-letter-word');
   }
 
   handleChange(e) {

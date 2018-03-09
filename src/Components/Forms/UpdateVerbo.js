@@ -54,6 +54,7 @@ class UpdateVerbo extends Component {
     let { p, ...pObj } = { p, ...this.state };
     console.log(p, pObj);
     this.props.data.onSave(p, pObj);
+    this.props.history.push('/words/verbo');
   }
 
   render(){

@@ -29,6 +29,7 @@ class UpdatePrefixSuffixRoot extends Component {
     e.preventDefault();
     let { p, ...pObj } = { p, ...this.state };
     this.props.data.onSave(p, pObj);
+    this.props.history.push('/words/prefix-suffix-root');
     console.log(p, pObj);
   }
 
