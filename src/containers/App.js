@@ -25,6 +25,7 @@ class App extends Component {
       verbo: {},
       verbos: []
     }
+    this.handleCreateGame = this.handleCreateGame.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleAuth = this.handleAuth.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -250,6 +251,26 @@ class App extends Component {
     });
   }
 
+  handleCreateGame(){
+    let winning_word = [...this.state.fourLetterWord];
+    let user;
+    if (Object.keys(winning_word).length === 0 && winning_word.constructor === Object) {
+      this.handleLoadRandomFourLetterWord();
+      this.handleCreateGame();
+      console.log("empty");
+    } else {
+      winning_word = [...this.state.fourLetterWord];
+      console.log("obj");
+    }
+    if (this.state.user) {
+      user = [...this.state.user];
+      console.log("obj");
+    }
+    this.props.history.push('/games/four-letter-word');
+    // let game
+    console.log(user, winning_word);
+  }
+
   render() {
     const { showLoginForm, showSignUpForm, user } = this.state;
     return (
@@ -269,6 +290,7 @@ class App extends Component {
           onLoadRandomFourLetterWord={ this.handleLoadRandomFourLetterWord }
           onLoadRandomPrefixSuffixRoot={ this.handleLoadRandomPrefixSuffixRoot }
           onLoadRandomVerbo={ this.handleLoadRandomVerbo }
+          onCreateGame={ this.handleCreateGame }
           />
         { showLoginForm || showSignUpForm ?
           <AuthForm

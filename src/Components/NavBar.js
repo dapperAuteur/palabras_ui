@@ -5,6 +5,7 @@ import './NavBar.css';
 const NavBar = (props) => {
   const {
     user,
+    onCreateGame,
     onLoadRandomFourLetterWord,
     onLoadRandomPrefixSuffixRoot,
     onLoadRandomVerbo,
@@ -23,12 +24,12 @@ const NavBar = (props) => {
                 className="">
                 Palabras
               </Link>
-              <Link
-                to={ '/games/new/four-letter-word' }
-                className="menu-item"
-              >
-                Four Letter Word Game
-              </Link>
+              <button
+                onClick={ onCreateGame }
+                className='btn btn-default'
+                >
+                New Game
+              </button>
             </span>
             <span className="random-word">
               <button className='btn  btn-default'>Words</button>

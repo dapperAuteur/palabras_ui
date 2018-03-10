@@ -13,7 +13,7 @@ import FourLetterWordGame from '../components/Games/FourLetterWordGame';
 
 const routes = [
   {
-    path: '/games/new/four-letter-word',
+    path: '/games/four-letter-word',
     component: FourLetterWordGame
   },
   {
