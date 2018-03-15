@@ -5,15 +5,19 @@ import './Game.css';
 class FourLetterWordGame extends Component {
   constructor(props) {
     super(props);
+    // pull game from state and add here;
+    const game = this.props.data.props.game;
+    console.log(game);
+    console.log(this.props.data.props.game);
     this.state = {
       p: 'games/',
-      game: {},
+      game,
       letter0: '',
       letter1: '',
       letter2: '',
       letter3: '',
       letters: [
-        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+        "Choose A Letter", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
       ],
       // attempts,
       // bulls,
@@ -27,18 +31,68 @@ class FourLetterWordGame extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpdateGame = this.handleUpdateGame.bind(this);
+  }
+
+  componentWillMount(){
+    console.log(this.props.game.winning_word);
+    if (!this.props.game.winning_word) return null;
+  }
+
+  async handleUpdateGame(){
+    let { attempts, bulls, cows, guess, guesses, score, winning_word, won, word_to_consider_for_library } = this.state.game;
+    const { letter0, letter1, letter2, letter3 } = this.state;
+    console.log(this.state.game);
+    console.log(letter0, letter1, letter2, letter3);
+    guess = letter0 + letter1 + letter2 + letter3;
+    console.log(guess, winning_word);
+    // if game has userId, send data to server, else keep in localStorage
+    attempts++;
+    // check & set cows & bulls, won, word_to_consider_for_library
+    guesses.push(guess);
+    let game = {
+      attempts,
+      bulls,
+      cows,
+      guess,
+      guesses,
+      score,
+      winning_word,
+      won,
+      word_to_consider_for_library
+    }
+    console.log(game);
+
+    this.setState({
+      game
+    })
+
+    console.log('handleUpdateGame');
   }
 
   handleChange(e){
 
+    let game = [...this.state.game];
+
+
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+    console.log(this.state);
+    console.log(game);
   }
   handleSubmit(e){
     e.preventDefault();
+    this.handleUpdateGame();
+    let p = this.state.p;
+
+    let { ...pObj } = { ...this.state.game };
+    console.log(p, pObj);
   }
 
   render() {
     const { letter0, letter1,letter2, letter3, letters } = this.state;
-    // const { letters } = this.props;
+
 
     return (
       <div className='word-form-container'>
@@ -119,6 +173,7 @@ FourLetterWordGame.propTypes = {
     attempts: PropTypes.number,
     bulls: PropTypes.number,
     cows: PropTypes.number,
+    guess: PropTypes.string,
     guesses: PropTypes.arrayOf(PropTypes.string).isRequired,
     userId: PropTypes.string.isRequired,
     score: PropTypes.number,
@@ -160,6 +215,7 @@ FourLetterWordGame.defaultProps = {
     attempts: 0,
     bulls: 0,
     cows: 0,
+    guess: '',
     guesses: [],
     userId: '',
     score: 0,
@@ -172,7 +228,7 @@ FourLetterWordGame.defaultProps = {
   letter2: 'R',
   letter3: 'T',
   letters: [
-    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+    "Choose A Letter", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
   ],
   // attempts: 0,
   // bulls: 0,

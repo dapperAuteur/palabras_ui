@@ -252,20 +252,39 @@ class App extends Component {
   }
 
   handleCreateGame(){
-    let winning_word = [...this.state.fourLetterWord];
-    let user;
-    if (Object.keys(winning_word).length === 0 && winning_word.constructor === Object) {
+    let winning_word = this.state.fourLetterWord;
+    console.log(Object.keys(winning_word));
+    if (Object.keys(winning_word).length === 0) {
       this.handleLoadRandomFourLetterWord();
-      this.handleCreateGame();
-      console.log("empty");
-    } else {
-      winning_word = [...this.state.fourLetterWord];
-      console.log("obj");
+      winning_word = this.state.fourLetterWord;
     }
-    if (this.state.user) {
-      user = [...this.state.user];
-      console.log("obj");
+
+    console.log(winning_word);
+    let user;
+    // if () {
+    //   this.handleLoadRandomFourLetterWord();
+    //   this.handleCreateGame();
+    //   console.log("empty");
+    // } else {
+    //   winning_word = [...this.state.fourLetterWord];
+    //   console.log("obj");
+    // }
+    // if (this.state.user) {
+    //   user = [...this.state.user];
+    //   console.log("obj");
+    // }
+    let game = {
+      attempts: 0,
+      bulls: 0,
+      cows: 0,
+      guess: '',
+      guesses: [],
+      score: 0,
+      winning_word,
+      won: false,
+      word_to_consider_for_library: []
     }
+    this.setState({ game });
     this.props.history.push('/games/four-letter-word');
     // let game
     console.log(user, winning_word);
