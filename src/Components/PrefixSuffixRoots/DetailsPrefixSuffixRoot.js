@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const DetailsPrefixSuffixRoot = (props) => {
   const prefixSuffixRoot = props.data.props.prefixSuffixRoot;
+  const onDelete = props.data.onDelete;
   const onLoadRandomPrefixSuffixRoot = props.data.onLoadRandomPrefixSuffixRoot;
   console.log(props);
   console.log(prefixSuffixRoot);
@@ -20,6 +21,11 @@ const DetailsPrefixSuffixRoot = (props) => {
           onClick={ onLoadRandomPrefixSuffixRoot }
           className="btn btn-default">
           Next Prefix Suffix or Root
+        </button>
+        <button
+          onClick={ onDelete }
+          className="btn btn-danger">
+          Delete Prefix Suffix or Root
         </button>
         { prefixSuffixRoot.word === '' ?
           null

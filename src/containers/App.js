@@ -25,16 +25,17 @@ class App extends Component {
       verbo: {},
       verbos: []
     }
-    this.handleCreateGame = this.handleCreateGame.bind(this);
-    this.handleSave = this.handleSave.bind(this);
     this.handleAuth = this.handleAuth.bind(this);
-    this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleCreateGame = this.handleCreateGame.bind(this);
+    this.handleDeletePalabra = this.handleDeletePalabra.bind(this);
     this.handleLoadFourLetterWords = this.handleLoadFourLetterWords.bind(this);
     this.handleLoadPrefixSuffixRoots = this.handleLoadPrefixSuffixRoots.bind(this);
     this.handleLoadVerbos = this.handleLoadVerbos.bind(this);
     this.handleLoadRandomFourLetterWord = this.handleLoadRandomFourLetterWord.bind(this);
     this.handleLoadRandomPrefixSuffixRoot = this.handleLoadRandomPrefixSuffixRoot.bind(this);
     this.handleLoadRandomVerbo = this.handleLoadRandomVerbo.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   componentWillMount(){
@@ -183,7 +184,15 @@ class App extends Component {
   }
 
   async handleUpdatePalabra(p = "verbos/", pObj) {
+    let userRole = this.state.user.userRole;
+    let token = this.state.user.token;
+    console.log(this.state.user);
+    console.log(userRole);
+    pObj.userRole = userRole;
+    pObj.token = token;
+    console.log(pObj);
     let updatedPalabra = await apiCalls.updatePalabra(p, pObj);
+    console.log(updatedPalabra);
     let params = p.slice(0, -1);
     const palabras = this.state[params].map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
     switch (params) {
@@ -197,14 +206,36 @@ class App extends Component {
         this.setState({ verbo: updatedPalabra });
         break;
       default:
-
     }
-    // this.setState({
-    //   palabras,
-    //   params: updatedPalabra
-    //  });
-     console.log(params, updatedPalabra, palabras);
-    // localStorage.setItem("palabras", JSON.stringify(palabras));
+     console.log(params, updatedPalabra);
+  }
+
+  async handleDeletePalabra=(p, pObj) => {
+    let userRole = this.state.user.userRole;
+    let token = this.state.user.token;
+    let params = p.slice(0, -1);
+    let param0 = params.slice(0, -1);
+    console.log(params, param0);
+    pObj.userRole = userRole;
+    pObj.token = token;
+    if (pObj.hasOwnProperty('_id')) {
+      let deletedPalabra = await apiCalls.deletePalabra(p, pObj);
+      console.log(deletedPalabra);
+      const palabras = this.state[params].filter(param => (param._id === params._id) ? { ...param, ...updatedPalabra } : param)
+      switch (params) {
+        case "fourLetterWords":
+          this.setState({ fourLetterWords: palabras });
+          break;
+        case "prefixSuffixRoots":
+          this.setState({ prefixSuffixRoots: palabras });
+          break;
+        case "verbos":
+          this.setState({ verbos: palabras });
+          break;
+        default:
+      }
+       console.log(params, updatedPalabra);
+    }
   }
 
   handleSave=(p, pObj) => {
@@ -333,10 +364,11 @@ class App extends Component {
         }
         <Main
           props={ this.state }
-          onSave={ this.handleSave }
+          onDelete={ this.handleDeletePalabra }
           onLoadRandomFourLetterWord={ this.handleLoadRandomFourLetterWord }
           onLoadRandomPrefixSuffixRoot={ this.handleLoadRandomPrefixSuffixRoot }
           onLoadRandomVerbo={ this.handleLoadRandomVerbo }
+          onSave={ this.handleSave }
           />
       </div>
     );

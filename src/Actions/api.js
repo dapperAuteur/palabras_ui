@@ -1,4 +1,7 @@
-const APIURL = "//localhost:8081/api/ver0001/";
+// dev server
+// const APIURL = "//localhost:8081/api/ver0001/";
+// deployed server on heroku
+const APIURL = "//peaceful-waters-22726.herokuapp.com/api/ver0001/";
 
 export async function onAuth(params) {
   console.log(params);
@@ -45,6 +48,7 @@ export async function createPalabra(p, pObj) {
     method: 'post',
     headers: new Headers({
       'Content-Type': 'application/json',
+      'Authorization': token
     }),
     body: JSON.stringify({ ...pObj })
   })
@@ -64,9 +68,14 @@ export async function createPalabra(p, pObj) {
     })
 }
 
-export async function removePalabra(p, pId) {
-  return fetch(`${APIURL}${p}${pId}`, {
-    method: 'delete'
+export async function removePalabra(p, pObj) {
+  let token = `Bearer ${pObj.token}`;
+  return fetch(`${APIURL}${p}${pObj._id}`, {
+    method: 'delete',
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }),
   })
     .then(resp => {
       if (!resp.ok) {
@@ -86,10 +95,14 @@ export async function removePalabra(p, pId) {
 
 export async function updatePalabra(p, pObj) {
   console.log(`${APIURL}${p}${pObj._id}`);
+  console.log(pObj);
+  let token = `Bearer ${pObj.token}`;
+  console.log(token);
   return fetch(`${APIURL}${p}${pObj._id}`, {
     method: 'put',
     headers: new Headers({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': token
     }),
     body: JSON.stringify({ ...pObj })
   })

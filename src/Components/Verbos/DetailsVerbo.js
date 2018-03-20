@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const DetailsVerbo = (props) => {
   const verbo = props.data.props.verbo;
+  const onDelete = props.data.onDelete;
   const onLoadRandomVerbo = props.data.onLoadRandomVerbo;
 
   return (
@@ -18,6 +19,11 @@ const DetailsVerbo = (props) => {
         onClick={ onLoadRandomVerbo }
         className="btn btn-default">
         Next Verbo
+      </button>
+      <button
+        onClick={ onDelete }
+        className="btn btn-danger">
+        Delete Verbo
       </button>
       { verbo.spanish === '' ?
         null

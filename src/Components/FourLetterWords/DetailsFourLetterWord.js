@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const DetailsFourLetterWord = (props) => {
   const fourLetterWord = props.data.props.fourLetterWord;
+  const onDelete = props.data.onDelete;
   const onLoadRandomFourLetterWord = props.data.onLoadRandomFourLetterWord;
   console.log(fourLetterWord, props);
 
@@ -15,6 +16,11 @@ const DetailsFourLetterWord = (props) => {
           onClick={ onLoadRandomFourLetterWord }
           className="btn btn-default">
           Next Four Letter Word
+        </button>
+        <button
+          onClick={ onDelete }
+          className="btn btn-danger">
+          Delete Four Letter Word
         </button>
         { fourLetterWord.word === '' ?
           null

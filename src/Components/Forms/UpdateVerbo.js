@@ -7,6 +7,7 @@ class UpdateVerbo extends Component {
   constructor(props) {
     super(props);
     const { _id, spanish, english, reflexive, irregular, categoría_de_irregular, cambiar_de_irregular, terminación, grupo } = this.props.data.props.verbo;
+    const user = this.props.data.props.user;
     this.state = {
       _id,
       cambiar_de_irregular,
@@ -18,6 +19,7 @@ class UpdateVerbo extends Component {
       reflexive,
       spanish,
       terminación,
+      user
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -52,7 +54,11 @@ class UpdateVerbo extends Component {
   handleSubmit(e){
     e.preventDefault();
     let { p, ...pObj } = { p, ...this.state };
+    // console.log(this.state);
+    // let user = this.state.user;
     console.log(p, pObj);
+    // pObj.userRole = user.userRole;
+    console.log(pObj);
     this.props.data.onSave(p, pObj);
     this.props.history.push('/words/verbo');
   }
