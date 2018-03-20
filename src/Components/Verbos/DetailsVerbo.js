@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 
 const DetailsVerbo = (props) => {
   const verbo = props.data.props.verbo;
+  const id = props.data.props.verbo._id;
   const onDelete = props.data.onDelete;
   const onLoadRandomVerbo = props.data.onLoadRandomVerbo;
+  const p = 'verbos/';
 
   return (
     <div>

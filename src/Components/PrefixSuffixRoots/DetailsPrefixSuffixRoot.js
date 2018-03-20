@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const DetailsPrefixSuffixRoot = (props) => {
   const prefixSuffixRoot = props.data.props.prefixSuffixRoot;
+  const id = props.data.props.prefixSuffixRoot._id;
   const onDelete = props.data.onDelete;
   const onLoadRandomPrefixSuffixRoot = props.data.onLoadRandomPrefixSuffixRoot;
-  console.log(props);
-  console.log(prefixSuffixRoot);
+  console.log(prefixSuffixRoot, props);
   // if (prefixSuffixRoot === undefined) {
   //   prefixSuffixRoot = JSON.parse(localStorage.getItem("prefixSuffixRoot"));
   // }

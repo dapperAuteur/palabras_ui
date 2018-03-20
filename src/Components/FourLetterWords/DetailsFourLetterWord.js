@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 
 const DetailsFourLetterWord = (props) => {
   const fourLetterWord = props.data.props.fourLetterWord;
+  const id = props.data.props.fourLetterWord._id;
   const onDelete = props.data.onDelete;
   const onLoadRandomFourLetterWord = props.data.onLoadRandomFourLetterWord;
+  const p = 'fourLetterWords/';
   console.log(fourLetterWord, props);
 
   return (

@@ -44,6 +44,7 @@ export async function getPalabra(p, pId) {
 }
 
 export async function createPalabra(p, pObj) {
+  let token = `Bearer ${pObj.token}`;
   return fetch(`${APIURL}${p}`, {
     method: 'post',
     headers: new Headers({

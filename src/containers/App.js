@@ -210,31 +210,80 @@ class App extends Component {
      console.log(params, updatedPalabra);
   }
 
-  async handleDeletePalabra=(p, pObj) => {
+  async handleDeletePalabra() {
     let userRole = this.state.user.userRole;
+    console.log(this.state);
     let token = this.state.user.token;
-    let params = p.slice(0, -1);
-    let param0 = params.slice(0, -1);
-    console.log(params, param0);
-    pObj.userRole = userRole;
-    pObj.token = token;
+    let pathname = this.props.history.location.pathname;
+    let params = pathname.slice(7) + "s";
+    console.log(pathname);
+    console.log(typeof pathname);
+    if (params == "four-letter-words") {
+      params = "fourLetterWords";
+      console.log(params);
+    } else if (params == "prefix-suffix-roots") {
+      params = "prefixSuffixRoots";
+      console.log(params);
+    }
+    let p = params + "/";
+    let palabra;
+    console.log(params);
+    switch (params) {
+      case "fourLetterWords":
+        palabra = this.state.fourLetterWord;
+        console.log(palabra);
+        break;
+      case "prefixSuffixRoots":
+        palabra = this.state.prefixSuffixRoot;
+        console.log(palabra);
+        break;
+      case "verbos":
+        palabra = this.state.verbo;
+        console.log(palabra);
+        break;
+      default:
+    }
+    let pObj = {
+      _id: palabra._id,
+      p,
+      palabra,
+      token,
+      userRole
+    }
+    console.log(pObj);
     if (pObj.hasOwnProperty('_id')) {
-      let deletedPalabra = await apiCalls.deletePalabra(p, pObj);
-      console.log(deletedPalabra);
-      const palabras = this.state[params].filter(param => (param._id === params._id) ? { ...param, ...updatedPalabra } : param)
+      // let deletedPalabra = await apiCalls.removePalabra(p, pObj);
+      // console.log(deletedPalabra);
+      // console.log(pObj.palabra._id);
+      const palabras = this.state[params].filter(param => param._id === pObj._id);
+      console.log(palabras);
       switch (params) {
         case "fourLetterWords":
-          this.setState({ fourLetterWords: palabras });
+          this.setState({
+            fourLetterWord: {},
+            fourLetterWords: palabras
+          });
+          console.log("deleted", params, pObj.palabra);
+          this.props.history.push('/words/four-letter-word');
           break;
         case "prefixSuffixRoots":
-          this.setState({ prefixSuffixRoots: palabras });
+          this.setState({
+            prefixSuffixRoot: {},
+            prefixSuffixRoots: palabras
+          });
+          console.log("deleted", params, pObj.palabra);
+          this.props.history.push('/words/prefix-suffix-root');
           break;
         case "verbos":
-          this.setState({ verbos: palabras });
+          this.setState({
+            verbo: {},
+            verbos: palabras
+          });
+          console.log("deleted", params, pObj.palabra);
+          this.props.history.push('/words/verbo');
           break;
         default:
       }
-       console.log(params, updatedPalabra);
     }
   }
 
@@ -280,6 +329,7 @@ class App extends Component {
     this.setState({
       user: {}
     });
+    this.props.history.push('/');
   }
 
   handleCreateGame(){

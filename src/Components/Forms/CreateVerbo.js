@@ -157,7 +157,7 @@ class CreateVerbo extends Component {
 
 CreateVerbo.propTypes = {
   p: PropTypes.string.isRequired,
-  spanish: PropTypes.string.isRequired,
+  spanish: PropTypes.string,
   english: PropTypes.string,
   reflexive: PropTypes.bool,
   irregular: PropTypes.bool,
