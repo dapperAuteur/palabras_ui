@@ -24,6 +24,11 @@ const NavBar = (props) => {
                 className="">
                 Palabras
               </Link>
+              <Link
+                to={ '/words/find-palabra'}
+                className="">
+                Find Palabra
+              </Link>
               <button
                 onClick={ onCreateGame }
                 className='btn btn-default'

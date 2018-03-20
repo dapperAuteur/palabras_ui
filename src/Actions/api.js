@@ -1,7 +1,7 @@
 // dev server
-// const APIURL = "//localhost:8081/api/ver0001/";
+const APIURL = "//localhost:8081/api/ver0001/";
 // deployed server on heroku
-const APIURL = "//peaceful-waters-22726.herokuapp.com/api/ver0001/";
+// const APIURL = "//peaceful-waters-22726.herokuapp.com/api/ver0001/";
 
 export async function onAuth(params) {
   console.log(params);
@@ -25,8 +25,8 @@ export async function getPalabras(param) {
     })
 }
 
-export async function getPalabra(p, pId) {
-  return fetch(`${APIURL}${p}${pId}`)
+export async function getPalabra(p, pObj) {
+  return fetch(`${APIURL}${p}${pObj._id}`)
     .then(resp => {
       if (!resp.ok) {
         if (resp.status >= 400 && resp.status < 500) {

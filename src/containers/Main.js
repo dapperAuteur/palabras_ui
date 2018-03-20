@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import CreateFourLetterWord from './../components/Forms/CreateFourLetterWord';
 import CreatePrefixSuffixRoot from '../components/Forms/CreatePrefixSuffixRoot';
 import CreateVerbo from './../components/Forms/CreateVerbo';
+import FindPalabra from '../components/Palabras/FindPalabra';
 import DetailsFourLetterWord from './../components/FourLetterWords/DetailsFourLetterWord';
 import DetailsPrefixSuffixRoot from '../components/PrefixSuffixRoots/DetailsPrefixSuffixRoot';
 import DetailsVerbo from './../components/Verbos/DetailsVerbo';
@@ -12,10 +13,6 @@ import UpdateVerbo from './../components/Forms/UpdateVerbo';
 import FourLetterWordGame from '../components/Games/FourLetterWordGame';
 
 const routes = [
-  {
-    path: '/games/four-letter-word',
-    component: FourLetterWordGame
-  },
   {
     path: '/words/new/four-letter-word',
     component: CreateFourLetterWord
@@ -39,6 +36,14 @@ const routes = [
   {
     path: '/words/prefix-suffix-root',
     component: DetailsPrefixSuffixRoot
+  },
+  {
+    path: '/words/find-palabra',
+    component: FindPalabra
+  },
+  {
+    path: '/games/four-letter-word',
+    component: FourLetterWordGame
   },
   {
     path: '/words/update/four-letter-word',

@@ -21,6 +21,7 @@ class App extends Component {
       showLoginForm: false,
       showSignUpForm: false,
       user: {},
+      user0: {},
       users: [],
       verbo: {},
       verbos: []
@@ -29,6 +30,7 @@ class App extends Component {
     this.handleCreateGame = this.handleCreateGame.bind(this);
     this.handleDeletePalabra = this.handleDeletePalabra.bind(this);
     this.handleLoadFourLetterWords = this.handleLoadFourLetterWords.bind(this);
+    this.handleLoadPalabra = this.handleLoadPalabra.bind(this);
     this.handleLoadPrefixSuffixRoots = this.handleLoadPrefixSuffixRoots.bind(this);
     this.handleLoadVerbos = this.handleLoadVerbos.bind(this);
     this.handleLoadRandomFourLetterWord = this.handleLoadRandomFourLetterWord.bind(this);
@@ -103,6 +105,41 @@ class App extends Component {
       fourLetterWord
     })
     localStorage.setItem("fourLetterWord", JSON.stringify(fourLetterWord));
+  }
+
+  async handleLoadPalabra(p, pObj){
+    console.log("obj");
+    let palabra;
+    let params = p.slice(0, -1);
+    if (pObj.hasOwnProperty('_id')) {
+      palabra = await apiCalls.getPalabra(p, pObj);
+    } else if (pObj.hasOwnProperty('word')) {
+      let word = pObj.word;
+      const findPalabra = this.state[params].filter(param => param.word === word);
+      console.log(findPalabra);
+      palabra = await apiCalls.getPalabra(p, findPalabra);
+    }
+    console.log(palabra);
+
+    switch (params) {
+      case "fourLetterWords":
+        this.setState({ fourLetterWord: palabra });
+        this.props.history.push('/words/four-letter-word');
+        break;
+      case "prefixSuffixRoots":
+        this.setState({ prefixSuffixRoot: palabra });
+        this.props.history.push('/words/prefix-suffix-root');
+        break;
+      case "users":
+        this.setState({ user0: palabra });
+        break;
+      case "verbos":
+        this.setState({ verbo: palabra });
+        this.props.history.push('/words/verbo');
+        break;
+      default:
+
+    }
   }
 
   async handleLoadPrefixSuffixRoots(){
@@ -415,6 +452,7 @@ class App extends Component {
         <Main
           props={ this.state }
           onDelete={ this.handleDeletePalabra }
+          onLoadPalabra={ this.handleLoadPalabra }
           onLoadRandomFourLetterWord={ this.handleLoadRandomFourLetterWord }
           onLoadRandomPrefixSuffixRoot={ this.handleLoadRandomPrefixSuffixRoot }
           onLoadRandomVerbo={ this.handleLoadRandomVerbo }
