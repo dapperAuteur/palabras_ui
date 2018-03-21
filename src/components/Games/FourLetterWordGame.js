@@ -18,16 +18,7 @@ class FourLetterWordGame extends Component {
       letter3: '',
       letters: [
         "Choose A Letter", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-      ],
-      // attempts,
-      // bulls,
-      // cows,
-      // guesses,
-      // userId,
-      // score,
-      // winning_word,
-      // won,
-      // word_to_consider_for_library
+      ]
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,6 +47,7 @@ class FourLetterWordGame extends Component {
       cows,
       guess,
       guesses,
+      name: 'FourLetterWordGame',
       score,
       winning_word,
       won,
@@ -175,6 +167,7 @@ FourLetterWordGame.propTypes = {
     cows: PropTypes.number,
     guess: PropTypes.string,
     guesses: PropTypes.arrayOf(PropTypes.string).isRequired,
+    name: PropTypes.string,
     userId: PropTypes.string.isRequired,
     score: PropTypes.number,
     winning_word: PropTypes.shape({
@@ -190,21 +183,7 @@ FourLetterWordGame.propTypes = {
   letter1: PropTypes.string.isRequired,
   letter2: PropTypes.string.isRequired,
   letter3: PropTypes.string.isRequired,
-  letters: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // attempts: PropTypes.number,
-  // bulls: PropTypes.number,
-  // cows: PropTypes.number,
-  // guesses: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // userId: PropTypes.string.isRequired,
-  // score: PropTypes.number,
-  // winning_word: PropTypes.shape({
-  //   0: PropTypes.string.isRequired,
-  //   1: PropTypes.string.isRequired,
-  //   2: PropTypes.string.isRequired,
-  //   3: PropTypes.string.isRequired
-  // }),
-  // won: PropTypes.bool,
-  // word_to_consider_for_library: PropTypes.arrayOf(PropTypes.string).isRequired
+  letters: PropTypes.arrayOf(PropTypes.string).isRequired
 }
 
 FourLetterWordGame.defaultProps = {
@@ -217,6 +196,7 @@ FourLetterWordGame.defaultProps = {
     cows: 0,
     guess: '',
     guesses: [],
+    name: 'FourLetterWordGame',
     userId: '',
     score: 0,
     winning_word: {},
@@ -229,16 +209,7 @@ FourLetterWordGame.defaultProps = {
   letter3: 'T',
   letters: [
     "Choose A Letter", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-  ],
-  // attempts: 0,
-  // bulls: 0,
-  // cows: 0,
-  // guesses: [],
-  // userId: '',
-  // score: 0,
-  // winning_word: {},
-  // won: false,
-  // word_to_consider_for_library: []
+  ]
 }
 
 export default FourLetterWordGame;
