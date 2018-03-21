@@ -12,6 +12,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      error: {},
       fourLetterWord: {},
       fourLetterWords: [],
       game: {},
@@ -122,7 +123,9 @@ class App extends Component {
       findPalabra = findPalabra[0];
       console.log(findPalabra);
       if (findPalabra === undefined) {
-        let err = { errorMessage: "Word NOT Found!" };
+        let error = { error: "Word NOT Found!" };
+        this.setState({ error });
+        console.log(this.state.error);
         return;
       } else if (findPalabra.hasOwnProperty('_id')){
           palabra = await apiCalls.getPalabra(p, findPalabra);
