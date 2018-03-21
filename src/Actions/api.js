@@ -26,6 +26,7 @@ export async function getPalabras(param) {
 }
 
 export async function getPalabra(p, pObj) {
+  console.log(p, pObj);
   return fetch(`${APIURL}${p}${pObj._id}`)
     .then(resp => {
       if (!resp.ok) {

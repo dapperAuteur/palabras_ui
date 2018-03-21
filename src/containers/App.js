@@ -108,16 +108,21 @@ class App extends Component {
   }
 
   async handleLoadPalabra(p, pObj){
-    console.log("obj");
     let palabra;
     let params = p.slice(0, -1);
-    if (pObj.hasOwnProperty('_id')) {
+    console.log(p, pObj);
+    if (pObj.hasOwnProperty("_id")) {
+      console.log(pObj);
       palabra = await apiCalls.getPalabra(p, pObj);
+      console.log(palabra);
     } else if (pObj.hasOwnProperty('word')) {
       let word = pObj.word;
-      const findPalabra = this.state[params].filter(param => param.word === word);
+      console.log(word);
+      let findPalabra = this.state[params].filter(param => param.word === word);
+      findPalabra = findPalabra[0];
       console.log(findPalabra);
       palabra = await apiCalls.getPalabra(p, findPalabra);
+      console.log(palabra);
     }
     console.log(palabra);
 
