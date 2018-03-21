@@ -294,9 +294,10 @@ class App extends Component {
     }
     console.log(pObj);
     if (pObj.hasOwnProperty('_id')) {
-      // let deletedPalabra = await apiCalls.removePalabra(p, pObj);
-      // console.log(deletedPalabra);
-      // console.log(pObj.palabra._id);
+      console.log(pObj);
+      let deletedPalabra = await apiCalls.removePalabra(p, pObj);
+      console.log(deletedPalabra);
+      console.log(pObj.palabra._id);
       const palabras = this.state[params].filter(param => param._id === pObj._id);
       console.log(palabras);
       switch (params) {

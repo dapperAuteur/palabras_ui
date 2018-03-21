@@ -71,6 +71,7 @@ export async function createPalabra(p, pObj) {
 }
 
 export async function removePalabra(p, pObj) {
+  console.log(p, pObj);
   let token = `Bearer ${pObj.token}`;
   return fetch(`${APIURL}${p}${pObj._id}`, {
     method: 'delete',
