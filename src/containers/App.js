@@ -121,7 +121,12 @@ class App extends Component {
       let findPalabra = this.state[params].filter(param => param.word === word);
       findPalabra = findPalabra[0];
       console.log(findPalabra);
-      palabra = await apiCalls.getPalabra(p, findPalabra);
+      if (findPalabra === undefined) {
+        let err = { errorMessage: "Word NOT Found!" };
+        return;
+      } else if (findPalabra.hasOwnProperty('_id')){
+          palabra = await apiCalls.getPalabra(p, findPalabra);
+      }
       console.log(palabra);
     }
     console.log(palabra);
