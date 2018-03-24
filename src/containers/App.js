@@ -29,10 +29,8 @@ class App extends Component {
     this.handleAuth = this.handleAuth.bind(this);
     this.handleCreateGame = this.handleCreateGame.bind(this);
     this.handleDeletePalabra = this.handleDeletePalabra.bind(this);
-    this.handleLoadFourLetterWords = this.handleLoadFourLetterWords.bind(this);
     this.handleLoadPalabra = this.handleLoadPalabra.bind(this);
-    this.handleLoadPrefixSuffixRoots = this.handleLoadPrefixSuffixRoots.bind(this);
-    this.handleLoadVerbos = this.handleLoadVerbos.bind(this);
+    this.handleLoadPalabras = this.handleLoadPalabras.bind(this);
     this.handleLoadRandomFourLetterWord = this.handleLoadRandomFourLetterWord.bind(this);
     this.handleLoadRandomPrefixSuffixRoot = this.handleLoadRandomPrefixSuffixRoot.bind(this);
     this.handleLoadRandomVerbo = this.handleLoadRandomVerbo.bind(this);
@@ -43,32 +41,8 @@ class App extends Component {
   componentWillMount(){
     this.loadRandomPalabras();
     console.log(this.state);
-    // if (this.state.fourLetterWord === {}) {
-    // } else {
-    //   this.handleLoadRandomFourLetterWord();
-    // }
-    // if (this.state.prefixSuffixRoot === {}) {
-    //
-    // } else {
-    //   this.handleLoadRandomPrefixSuffixRoot();
-    // }
-    // if (this.state.verbo === {}) {
-    //
-    // } else {
-    //   this.handleLoadRandomVerbo();
-    //   console.log(this.state.verbo);
-    // }
     console.log("component will mount");
     let user;
-
-    // if (typeof(Storage) !== "undefined") {
-    //   user = JSON.parse(localStorage.getItem("user"));
-    //   if (user.hasOwnProperty('token')) {
-    //     this.setState({
-    //       user
-    //     });
-    //   }
-    // }
     this.loadUser();
   }
 
@@ -76,19 +50,23 @@ class App extends Component {
   }
 
   async loadRandomPalabras(){
-
-    this.handleLoadFourLetterWords();
-    this.handleLoadPrefixSuffixRoots();
-    this.handleLoadVerbos();
+    this.handleLoadPalabras();
   }
 
-  async handleLoadFourLetterWords () {
-    let fourLetterWords = await apiCalls.getPalabras("fourLetterWords");
+  async handleLoadPalabras (){
+    let fourLetterWords = await apiCalls.getPalabras('fourLetterWords');
+    let prefixSuffixRoots = await apiCalls.getPalabras('prefixSuffixRoots');
+    let verbos = await apiCalls.getPalabras('verbos');
 
     this.setState({
-      fourLetterWords
-    })
-    localStorage.setItem("fourLetterWords", JSON.stringify(fourLetterWords));
+      fourLetterWords,
+      prefixSuffixRoots,
+      verbos
+    });
+
+    localStorage.setItem('fourLetterWords', JSON.stringify(fourLetterWords));
+    localStorage.setItem('prefixSuffixRoots', JSON.stringify(prefixSuffixRoots));
+    localStorage.setItem('verbos', JSON.stringify(verbos));
   }
 
   async handleLoadRandomFourLetterWord(){
@@ -96,7 +74,7 @@ class App extends Component {
     if (this.state.fourLetterWords) {
       fourLetterWords = [...this.state.fourLetterWords];
     } else {
-      this.handleLoadFourLetterWords();
+      this.handleLoadPalabras();
       this.handleLoadRandomFourLetterWord();
     }
     let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
@@ -152,24 +130,16 @@ class App extends Component {
     }
   }
 
-  async handleLoadPrefixSuffixRoots(){
-    let prefixSuffixRoots = await apiCalls.getPalabras("prefixSuffixRoots");
-
-    this.setState({
-      prefixSuffixRoots
-    })
-    localStorage.setItem("prefixSuffixRoots", JSON.stringify(prefixSuffixRoots));
-  }
-
   async handleLoadRandomPrefixSuffixRoot(){
     let prefixSuffixRoots;
     if (this.state.prefixSuffixRoots) {
       prefixSuffixRoots = [...this.state.prefixSuffixRoots];
     } else {
-      this.handleLoadPrefixSuffixRoots();
+      this.handleLoadPalabras();
       this.handleLoadRandomPrefixSuffixRoot();
     }
     let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+    console.log("random prefixSuffixRoots");
 
     this.setState({
       prefixSuffixRoot
@@ -179,21 +149,12 @@ class App extends Component {
     }
   }
 
-  async handleLoadVerbos() {
-    let verbos = await apiCalls.getPalabras("verbos");
-
-    this.setState({
-      verbos
-    });
-    localStorage.setItem("verbos", JSON.stringify(verbos));
-  }
-
   async handleLoadRandomVerbo() {
     let verbos;
     if (this.state.verbos) {
       verbos = [...this.state.verbos];
     } else {
-      this.handleLoadVerbos();
+      this.handleLoadPalabras();
       this.handleLoadRandomVerbo();
     }
     let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
@@ -202,13 +163,6 @@ class App extends Component {
       verbo
     })
     localStorage.setItem("verbo", JSON.stringify(verbo));
-  }
-// NOT WORKING
-  async loadPalabra(p = "prefixSuffixRoots/", pId = "5a6d123f4f90e60fe36db2d3"){
-    // let palabra = await apiCalls.getPalabra(p, pId);
-    // let pal = p.slice(0, -1);
-    // this.setState({ pal: palabra });
-    // console.log(pal, palabra,this.state);
   }
 
   async handleAddPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
@@ -227,7 +181,6 @@ class App extends Component {
       default:
 
     }
-    // this.setState({ fourLetterWord: newPalabra });
   }
 
   async handleUpdatePalabra(p = "verbos/", pObj) {
@@ -365,8 +318,6 @@ class App extends Component {
       localStorage.setItem("user", JSON.stringify(currentUser));
     } else {
     }
-
-
   }
 
   handleLogOut(){

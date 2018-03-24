@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DetailsPrefixSuffixRoot = (props) => {
-  const prefixSuffixRoot = props.data.props.prefixSuffixRoot;
-  const id = props.data.props.prefixSuffixRoot._id;
+  console.log(props);
+  let prefixSuffixRoot = props.data.props.prefixSuffixRoot;
   const onDelete = props.data.onDelete;
   const onLoadRandomPrefixSuffixRoot = props.data.onLoadRandomPrefixSuffixRoot;
   console.log(prefixSuffixRoot, props);
-  // if (prefixSuffixRoot === undefined) {
-  //   prefixSuffixRoot = JSON.parse(localStorage.getItem("prefixSuffixRoot"));
-  // }
+  if (prefixSuffixRoot === undefined) {
+    prefixSuffixRoot = JSON.parse(localStorage.getItem("prefixSuffixRoot"));
+  }
 
   return (
     <div>
