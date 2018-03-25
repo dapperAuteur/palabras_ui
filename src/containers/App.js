@@ -16,6 +16,7 @@ class App extends Component {
       fourLetterWords: [],
       game: {},
       games: [],
+      p: '',
       prefixSuffixRoot: {},
       prefixSuffixRoots: [],
       showLoginForm: false,
@@ -31,14 +32,14 @@ class App extends Component {
     this.handleDeletePalabra = this.handleDeletePalabra.bind(this);
     this.handleLoadPalabra = this.handleLoadPalabra.bind(this);
     this.handleLoadPalabras = this.handleLoadPalabras.bind(this);
-    this.handleLoadRandomFourLetterWord = this.handleLoadRandomFourLetterWord.bind(this);
-    this.handleLoadRandomPrefixSuffixRoot = this.handleLoadRandomPrefixSuffixRoot.bind(this);
-    this.handleLoadRandomVerbo = this.handleLoadRandomVerbo.bind(this);
+    this.handleLoadRandomPalabra = this.handleLoadRandomPalabra.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
 
-  componentWillMount(){
+  componentDidMount(){
+    let pathname = this.props.location.pathname;
+    console.log(pathname);
     this.loadRandomPalabras();
     console.log(this.state);
     console.log("component will mount");
@@ -54,6 +55,7 @@ class App extends Component {
   }
 
   async handleLoadPalabras (){
+
     let fourLetterWords = await apiCalls.getPalabras('fourLetterWords');
     let prefixSuffixRoots = await apiCalls.getPalabras('prefixSuffixRoots');
     let verbos = await apiCalls.getPalabras('verbos');
@@ -69,21 +71,86 @@ class App extends Component {
     localStorage.setItem('verbos', JSON.stringify(verbos));
   }
 
-  async handleLoadRandomFourLetterWord(){
-    let fourLetterWords;
-    if (this.state.fourLetterWords) {
-      fourLetterWords = [...this.state.fourLetterWords];
-    } else {
-      this.handleLoadPalabras();
-      this.handleLoadRandomFourLetterWord();
-    }
-    let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
+  async handleLoadRandomPalabra() {
+    let palabraHash = this.props.location.hash;
+    console.log(palabraHash);
+    let palabra = palabraHash.slice(1);
+    console.log(palabra);
+    switch (palabra) {
+      case "fourLetterWords":
+      let fourLetterWords;
+      if (this.state.fourLetterWords) {
+        fourLetterWords = [...this.state.fourLetterWords];
+        console.log(fourLetterWords);
+      } else {
+        this.handleLoadPalabras();
+        this.handleLoadRandomPalabra();
+      }
+      let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
 
-    this.setState({
-      fourLetterWord
-    })
-    localStorage.setItem("fourLetterWord", JSON.stringify(fourLetterWord));
+      this.setState({
+        fourLetterWord
+      })
+      localStorage.setItem("fourLetterWord", JSON.stringify(fourLetterWord));
+      console.log(fourLetterWord);
+        break;
+      case "prefixSuffixRoots":
+      let prefixSuffixRoots;
+      if (this.state.prefixSuffixRoots) {
+        prefixSuffixRoots = [...this.state.prefixSuffixRoots];
+        console.log(prefixSuffixRoots);
+      } else {
+        this.handleLoadPalabras();
+        this.handleLoadRandomPalabra();
+      }
+      let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+      console.log("random prefixSuffixRoots");
+
+      this.setState({
+        prefixSuffixRoot
+      });
+      if (prefixSuffixRoot !== undefined) {
+        localStorage.setItem("prefixSuffixRoot", JSON.stringify(prefixSuffixRoot));
+        }
+        console.log(prefixSuffixRoot);
+        break;
+      case "verbos":
+      let verbos;
+      if (this.state.verbos) {
+        verbos = [...this.state.verbos];
+        console.log(verbos);
+      } else {
+        this.handleLoadPalabras();
+        this.handleLoadRandomVerbo();
+      }
+      let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
+
+      this.setState({
+        verbo
+      });
+      localStorage.setItem("verbo", JSON.stringify(verbo));
+      console.log(verbo);
+        break;
+      default:
+
+    }
   }
+
+  // async handleLoadRandomFourLetterWord(){
+  //   let fourLetterWords;
+  //   if (this.state.fourLetterWords) {
+  //     fourLetterWords = [...this.state.fourLetterWords];
+  //   } else {
+  //     this.handleLoadPalabras();
+  //     this.handleLoadRandomFourLetterWord();
+  //   }
+  //   let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
+  //
+  //   this.setState({
+  //     fourLetterWord
+  //   })
+  //   localStorage.setItem("fourLetterWord", JSON.stringify(fourLetterWord));
+  // }
 
   async handleLoadPalabra(p, pObj){
     let palabra;
@@ -130,40 +197,40 @@ class App extends Component {
     }
   }
 
-  async handleLoadRandomPrefixSuffixRoot(){
-    let prefixSuffixRoots;
-    if (this.state.prefixSuffixRoots) {
-      prefixSuffixRoots = [...this.state.prefixSuffixRoots];
-    } else {
-      this.handleLoadPalabras();
-      this.handleLoadRandomPrefixSuffixRoot();
-    }
-    let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
-    console.log("random prefixSuffixRoots");
+  // async handleLoadRandomPrefixSuffixRoot(){
+  //   let prefixSuffixRoots;
+  //   if (this.state.prefixSuffixRoots) {
+  //     prefixSuffixRoots = [...this.state.prefixSuffixRoots];
+  //   } else {
+  //     this.handleLoadPalabras();
+  //     this.handleLoadRandomPalabra();
+  //   }
+  //   let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+  //   console.log("random prefixSuffixRoots");
+  //
+  //   this.setState({
+  //     prefixSuffixRoot
+  //   });
+  //   if (prefixSuffixRoot !== undefined) {
+  //     localStorage.setItem("prefixSuffixRoot", JSON.stringify(prefixSuffixRoot));
+  //   }
+  // }
 
-    this.setState({
-      prefixSuffixRoot
-    });
-    if (prefixSuffixRoot !== undefined) {
-      localStorage.setItem("prefixSuffixRoot", JSON.stringify(prefixSuffixRoot));
-    }
-  }
-
-  async handleLoadRandomVerbo() {
-    let verbos;
-    if (this.state.verbos) {
-      verbos = [...this.state.verbos];
-    } else {
-      this.handleLoadPalabras();
-      this.handleLoadRandomVerbo();
-    }
-    let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
-
-    this.setState({
-      verbo
-    })
-    localStorage.setItem("verbo", JSON.stringify(verbo));
-  }
+  // async handleLoadRandomVerbo() {
+  //   let verbos;
+  //   if (this.state.verbos) {
+  //     verbos = [...this.state.verbos];
+  //   } else {
+  //     this.handleLoadPalabras();
+  //     this.handleLoadRandomVerbo();
+  //   }
+  //   let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
+  //
+  //   this.setState({
+  //     verbo
+  //   })
+  //   localStorage.setItem("verbo", JSON.stringify(verbo));
+  // }
 
   async handleAddPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
     let newPalabra = await apiCalls.createPalabra(p, pObj);
@@ -415,9 +482,7 @@ class App extends Component {
           props={ this.state }
           onDelete={ this.handleDeletePalabra }
           onLoadPalabra={ this.handleLoadPalabra }
-          onLoadRandomFourLetterWord={ this.handleLoadRandomFourLetterWord }
-          onLoadRandomPrefixSuffixRoot={ this.handleLoadRandomPrefixSuffixRoot }
-          onLoadRandomVerbo={ this.handleLoadRandomVerbo }
+          onLoadRandomPalabra={ this.handleLoadRandomPalabra }
           onSave={ this.handleSave }
           />
       </div>

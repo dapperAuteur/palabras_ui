@@ -7,6 +7,7 @@ const NavBar = (props) => {
     user,
     onCreateGame,
     onLoadRandomFourLetterWord,
+    onLoadRandomPalabra,
     onLoadRandomPrefixSuffixRoot,
     onLoadRandomVerbo,
     onLogout,
@@ -29,6 +30,11 @@ const NavBar = (props) => {
                 className="">
                 Find Palabra
               </Link>
+              <Link
+                to={ '/words/random-palabras'}
+                className="">
+                Details Palabra
+              </Link>
               <button
                 onClick={ onCreateGame }
                 className='btn btn-default'
@@ -39,21 +45,29 @@ const NavBar = (props) => {
             <span className="random-word">
               <button className='btn  btn-default'>Words</button>
               <Link
-               to={ '/words/four-letter-word' }
-               id="FourLetterWords"
+               to={{
+                 pathname: '/words/four-letter-word',
+                 hash: '#fourLetterWords',
+                 state: { p: 'fourLetterWords/' }
+               }}
                className="menu-item">
                Four Letter Word
               </Link>
               <Link
-               to={ '/words/prefix-suffix-root' }
-               innerRef={ onLoadRandomPrefixSuffixRoot }
-               id="PrefixSuffixRoots"
+               to={{
+                 pathname: '/words/prefix-suffix-root',
+                 hash: '#prefixSuffixRoots',
+                 state: { p: 'prefixSuffixRoots/' }
+               }}
                className="menu-item">
                Prefix Suffix Root
              </Link>
              <Link
-               to={ '/words/verbo' }
-               id="Verbos"
+               to={{
+                 pathname: '/words/verbo',
+                 hash: '#verbos',
+                 state: { p: 'verbos/' }
+               }}
                className="menu-item">
                Verbo
              </Link>

@@ -4,7 +4,9 @@ import CreateFourLetterWord from './../components/Forms/CreateFourLetterWord';
 import CreatePrefixSuffixRoot from '../components/Forms/CreatePrefixSuffixRoot';
 import CreateVerbo from './../components/Forms/CreateVerbo';
 import FindPalabra from '../components/Palabras/FindPalabra';
+import DetailsPalabras from '../components/Palabras/DetailsPalabras';
 import DetailsFourLetterWord from './../components/FourLetterWords/DetailsFourLetterWord';
+
 import DetailsPrefixSuffixRoot from '../components/PrefixSuffixRoots/DetailsPrefixSuffixRoot';
 import DetailsVerbo from './../components/Verbos/DetailsVerbo';
 import UpdateFourLetterWord from './../components/Forms/UpdateFourLetterWord';
@@ -27,15 +29,19 @@ const routes = [
   },
   {
     path: '/words/four-letter-word',
-    component: DetailsFourLetterWord
+    component: DetailsPalabras
   },
   {
     path: '/words/verbo',
-    component: DetailsVerbo
+    component: DetailsPalabras
+  },
+  {
+    path: '/words/random-palabras',
+    component: DetailsPalabras
   },
   {
     path: '/words/prefix-suffix-root',
-    component: DetailsPrefixSuffixRoot
+    component: DetailsPalabras
   },
   {
     path: '/words/find-palabra',
