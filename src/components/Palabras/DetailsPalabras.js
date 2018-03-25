@@ -22,13 +22,9 @@ const DetailsPalabras = (props) => {
   return(
     <div>
       <h1>Random Palabra</h1>
-      <DetailsFourLetterWord props={ props }/>
-      <DetailsPrefixSuffixRoot props={ props }/>
-      <DetailsVerbo props={ props }/>
-      <button
-        onClick={ onLoadRandomPalabra }>
-        Random Palabra
-      </button>
+      { p === "fourLetterWords" && <DetailsFourLetterWord props={ props }/> }
+      { p === "prefixSuffixRoots" && <DetailsPrefixSuffixRoot props={ props }/> }
+      { p === "verbos" && <DetailsVerbo props={ props }/> }
     </div>
   )
 }

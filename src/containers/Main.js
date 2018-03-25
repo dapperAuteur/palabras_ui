@@ -5,10 +5,6 @@ import CreatePrefixSuffixRoot from '../components/Forms/CreatePrefixSuffixRoot';
 import CreateVerbo from './../components/Forms/CreateVerbo';
 import FindPalabra from '../components/Palabras/FindPalabra';
 import DetailsPalabras from '../components/Palabras/DetailsPalabras';
-import DetailsFourLetterWord from './../components/FourLetterWords/DetailsFourLetterWord';
-
-import DetailsPrefixSuffixRoot from '../components/PrefixSuffixRoots/DetailsPrefixSuffixRoot';
-import DetailsVerbo from './../components/Verbos/DetailsVerbo';
 import UpdateFourLetterWord from './../components/Forms/UpdateFourLetterWord';
 import UpdatePrefixSuffixRoot from '../components/Forms/UpdatePrefixSuffixRoot';
 import UpdateVerbo from './../components/Forms/UpdateVerbo';
