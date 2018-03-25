@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DetailsVerbo = (props) => {
-  const verbo = props.data.props.verbo;
-  const id = props.data.props.verbo._id;
-  const onDelete = props.data.onDelete;
-  const onLoadRandomVerbo = props.data.onLoadRandomVerbo;
+  console.log(props);
+  const verbo = props.props.data.props.verbo;
+  console.log(verbo);
+  const onDelete = props.props.data.onDelete;
+  const onLoadRandomPalabra = props.props.data.onLoadRandomPalabra;
   const p = 'verbos/';
 
   return (
@@ -18,7 +19,7 @@ const DetailsVerbo = (props) => {
       <h3>Categoría de Irregular: { verbo.categoría_de_irregular }</h3>
       <h3>Cambiar de Irregular: { verbo.cambiar_de_irregular }</h3>
       <button
-        onClick={ onLoadRandomVerbo }
+        onClick={ onLoadRandomPalabra }
         className="btn btn-default">
         Next Verbo
       </button>

@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const DetailsFourLetterWord = (props) => {
-  const fourLetterWord = props.data.props.fourLetterWord;
-  const id = props.data.props.fourLetterWord._id;
-  const onDelete = props.data.onDelete;
-  const onLoadRandomFourLetterWord = props.data.onLoadRandomFourLetterWord;
+  console.log(props);
+  const fourLetterWord = props.props.data.props.fourLetterWord;
+  console.log(fourLetterWord);
+  const onDelete = props.props.data.onDelete;
+  const onLoadRandomPalabra = props.props.data.onLoadRandomPalabra;
   const p = 'fourLetterWords/';
   console.log(fourLetterWord, props);
 
@@ -15,7 +16,7 @@ const DetailsFourLetterWord = (props) => {
       <h3>Tier: { fourLetterWord.tier }</h3>
       <h3>Definition: { fourLetterWord.definition }</h3>
         <button
-          onClick={ onLoadRandomFourLetterWord }
+          onClick={ onLoadRandomPalabra }
           className="btn btn-default">
           Next Four Letter Word
         </button>

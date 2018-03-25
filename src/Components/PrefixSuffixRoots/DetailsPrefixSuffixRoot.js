@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const DetailsPrefixSuffixRoot = (props) => {
   console.log(props);
-  let prefixSuffixRoot = props.data.props.prefixSuffixRoot;
-  const onDelete = props.data.onDelete;
-  const onLoadRandomPrefixSuffixRoot = props.data.onLoadRandomPrefixSuffixRoot;
+  let prefixSuffixRoot = props.props.data.prefixSuffixRoot;
+  const onDelete = props.props.data.onDelete;
+  const onLoadRandomPalabra = props.props.data.onLoadRandomPalabra;
   console.log(prefixSuffixRoot, props);
   if (prefixSuffixRoot === undefined) {
     prefixSuffixRoot = JSON.parse(localStorage.getItem("prefixSuffixRoot"));
@@ -18,7 +18,7 @@ const DetailsPrefixSuffixRoot = (props) => {
       <h3>Meaning: { prefixSuffixRoot.meaning }</h3>
       <h3>Examples: { prefixSuffixRoot.examples }</h3>
         <button
-          onClick={ onLoadRandomPrefixSuffixRoot }
+          onClick={ onLoadRandomPalabra }
           className="btn btn-default">
           Next Prefix Suffix or Root
         </button>
