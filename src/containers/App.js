@@ -29,6 +29,7 @@ class App extends Component {
     }
     this.handleAuth = this.handleAuth.bind(this);
     this.handleCreateGame = this.handleCreateGame.bind(this);
+    this.handleCheckFourLetterWord = this.handleCheckFourLetterWord.bind(this);
     this.handleDeletePalabra = this.handleDeletePalabra.bind(this);
     this.handleLoadPalabra = this.handleLoadPalabra.bind(this);
     this.handleLoadPalabras = this.handleLoadPalabras.bind(this);
@@ -153,22 +154,6 @@ class App extends Component {
     }
   }
 
-  // async handleLoadRandomFourLetterWord(){
-  //   let fourLetterWords;
-  //   if (this.state.fourLetterWords) {
-  //     fourLetterWords = [...this.state.fourLetterWords];
-  //   } else {
-  //     this.handleLoadPalabras();
-  //     this.handleLoadRandomFourLetterWord();
-  //   }
-  //   let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
-  //
-  //   this.setState({
-  //     fourLetterWord
-  //   })
-  //   localStorage.setItem("fourLetterWord", JSON.stringify(fourLetterWord));
-  // }
-
   async handleLoadPalabra(p, pObj){
     let palabra;
     let params = p.slice(0, -1);
@@ -213,41 +198,6 @@ class App extends Component {
 
     }
   }
-
-  // async handleLoadRandomPrefixSuffixRoot(){
-  //   let prefixSuffixRoots;
-  //   if (this.state.prefixSuffixRoots) {
-  //     prefixSuffixRoots = [...this.state.prefixSuffixRoots];
-  //   } else {
-  //     this.handleLoadPalabras();
-  //     this.handleLoadRandomPalabra();
-  //   }
-  //   let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
-  //   console.log("random prefixSuffixRoots");
-  //
-  //   this.setState({
-  //     prefixSuffixRoot
-  //   });
-  //   if (prefixSuffixRoot !== undefined) {
-  //     localStorage.setItem("prefixSuffixRoot", JSON.stringify(prefixSuffixRoot));
-  //   }
-  // }
-
-  // async handleLoadRandomVerbo() {
-  //   let verbos;
-  //   if (this.state.verbos) {
-  //     verbos = [...this.state.verbos];
-  //   } else {
-  //     this.handleLoadPalabras();
-  //     this.handleLoadRandomVerbo();
-  //   }
-  //   let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
-  //
-  //   this.setState({
-  //     verbo
-  //   })
-  //   localStorage.setItem("verbo", JSON.stringify(verbo));
-  // }
 
   async handleAddPalabra(p = "verbos/", pObj = { spanish: "asdf" }){
     let newPalabra = await apiCalls.createPalabra(p, pObj);
@@ -432,6 +382,7 @@ class App extends Component {
       cows: 0,
       guess: '',
       guesses: [],
+      message: '',
       score: 0,
       winning_word,
       won: false,
@@ -439,6 +390,70 @@ class App extends Component {
     }
     this.setState({ game });
     console.log(game, user, winning_word);
+  }
+
+  handleCheckFourLetterWord(game){
+    let { attempts, bulls, cows, guess, guesses, message, score, winning_word, won, word_to_consider_for_library } = { ...game };
+    bulls = 0;
+    cows = 0;
+    console.log(guess);
+    let word = winning_word.word;
+    let currentGuess = this.state.fourLetterWords.filter(word => word.word === guess);
+    console.log(currentGuess);
+    if (currentGuess.length === 0) {
+      word_to_consider_for_library.push(guess);
+      message = `${guess} is NOT word in our library. We'll consider adding it to the library. You lose 200 points`;
+      score -= 200;
+      console.log(`message: ${message}, score: ${score}`);
+    } else if (guess === word) {
+      bulls = 4;
+      message = 'You Won!!!';
+      score += 500;
+      won = true;
+      console.log(`bulls: ${bulls}, message: ${message}, score: ${score}, won: ${won}`);
+    } else {
+      let arr_guess = guess.split("");
+      let arr_word = word.split("");
+      message = `${guess} is NOT the Word`;
+      for (var i = 0; i < arr_guess.length; i++) {
+        for (var j = 0; j < arr_word.length; j++) {
+          if (arr_guess[i] == arr_word[j]) {
+            if (i == j) {
+              bulls++;
+              score += 100;
+              won = false;
+              arr_guess[i] = "0";
+              arr_word[j] = "1";
+            }
+          }
+          if (arr_guess[i] == arr_word[j]) {
+            cows++;
+            score += 50;
+            won = false;
+            arr_guess[i] = "0";
+            arr_word[j] = "1";
+          }
+        }
+      }
+      message = `You didn't win yet. You have ${cows} cows and ${bulls} bulls.`
+      won = false;
+      console.log(`cows: ${cows}, bulls: ${bulls}, message: ${message}, score: ${score}, won: ${won}`);
+    }
+    game = {
+      attempts,
+      bulls,
+      cows,
+      guess,
+      guesses,
+      message,
+      score,
+      winning_word,
+      won,
+      word_to_consider_for_library
+    }
+    console.log(game);
+    this.setState({ game });
+    localStorage.setItem("game", JSON.stringify(game));
   }
 
   render() {
@@ -484,6 +499,7 @@ class App extends Component {
         }
         <Main
           props={ this.state }
+          onCheckFourLetterWord = { this.handleCheckFourLetterWord }
           onDelete={ this.handleDeletePalabra }
           onLoadPalabra={ this.handleLoadPalabra }
           onLoadRandomPalabra={ this.handleLoadRandomPalabra }

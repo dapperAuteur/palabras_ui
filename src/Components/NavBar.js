@@ -32,12 +32,6 @@ const NavBar = (props) => {
                 className="">
                 Details Palabra
               </Link>
-              <button
-                onClick={ onCreateGame }
-                className='btn btn-default'
-                >
-                New Game
-              </button>
               <Link
                 to={{
                   pathname: '/games/four-letter-word',
