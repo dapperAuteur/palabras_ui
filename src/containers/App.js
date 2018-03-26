@@ -402,7 +402,7 @@ class App extends Component {
     let winning_word = this.state.fourLetterWord;
     console.log(Object.keys(winning_word));
     if (Object.keys(winning_word).length === 0) {
-      this.handleLoadRandomFourLetterWord();
+      this.handleLoadRandomPalabra();
       winning_word = this.state.fourLetterWord;
     }
 

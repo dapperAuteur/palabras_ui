@@ -6,10 +6,7 @@ const NavBar = (props) => {
   const {
     user,
     onCreateGame,
-    onLoadRandomFourLetterWord,
     onLoadRandomPalabra,
-    onLoadRandomPrefixSuffixRoot,
-    onLoadRandomVerbo,
     onLogout,
     onShowLoginForm,
     onShowSignUpForm
@@ -41,6 +38,16 @@ const NavBar = (props) => {
                 >
                 New Game
               </button>
+              <Link
+                to={{
+                  pathname: '/games/four-letter-word',
+                  hash: '#fourLetterWords',
+                  state: { p: 'fourLetterWords/' }
+                }}
+                innerRef={ onLoadRandomPalabra }
+                >
+                FourLetterWordGame
+              </Link>
             </span>
             <span className="random-word">
               <button className='btn  btn-default'>Words</button>
