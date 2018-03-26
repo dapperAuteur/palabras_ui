@@ -7,10 +7,14 @@ class FourLetterWordGame extends Component {
     super(props);
     // pull game from state and add here;
     console.log(props);
+    console.log(this.props);
     console.log(props.data.props);
-    const game = this.props.data.props.game;
+    let fourLetterWord = props.data.props.fourLetterWord;
+    let game = props.data.props.game;
     console.log(game);
-    console.log(this.props.data.props.game);
+    game.winning_word = fourLetterWord;
+    console.log(props.data.props.game);
+    console.log(game);
     const onLoadRandomPalabra = props.data.props.onLoadRandomPalabra;
     console.log(onLoadRandomPalabra);
     this.state = {
@@ -85,7 +89,7 @@ class FourLetterWordGame extends Component {
     let { ...pObj } = { ...this.state.game };
     console.log(p, pObj);
     if (this.state.game.winning_word === undefined) {
-      console.log("winning_word");
+      console.log("NO winning_word");
     }
   }
 

@@ -44,7 +44,7 @@ const NavBar = (props) => {
                   hash: '#fourLetterWords',
                   state: { p: 'fourLetterWords/' }
                 }}
-                innerRef={ onLoadRandomPalabra }
+                onClick={ onCreateGame }
                 >
                 FourLetterWordGame
               </Link>

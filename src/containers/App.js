@@ -72,13 +72,19 @@ class App extends Component {
   }
 
   async handleLoadRandomPalabra() {
+    let fourLetterWord;
+    let fourLetterWords;
+    let prefixSuffixRoot;
+    let prefixSuffixRoots;
+    let verbo;
+    let verbos;
+    console.log(this.props);
     let palabraHash = this.props.location.hash;
     console.log(palabraHash);
     let palabra = palabraHash.slice(1);
     console.log(palabra);
     switch (palabra) {
       case "fourLetterWords":
-      let fourLetterWords;
       if (this.state.fourLetterWords) {
         fourLetterWords = [...this.state.fourLetterWords];
         console.log(fourLetterWords);
@@ -86,7 +92,7 @@ class App extends Component {
         this.handleLoadPalabras();
         this.handleLoadRandomPalabra();
       }
-      let fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
+      fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
 
       this.setState({
         fourLetterWord
@@ -95,7 +101,6 @@ class App extends Component {
       console.log(fourLetterWord);
         break;
       case "prefixSuffixRoots":
-      let prefixSuffixRoots;
       if (this.state.prefixSuffixRoots) {
         prefixSuffixRoots = [...this.state.prefixSuffixRoots];
         console.log(prefixSuffixRoots);
@@ -103,7 +108,7 @@ class App extends Component {
         this.handleLoadPalabras();
         this.handleLoadRandomPalabra();
       }
-      let prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
+      prefixSuffixRoot = shuffle.pick(prefixSuffixRoots, [{ 'copy': true }, { 'picks': 1 }]);
       console.log("random prefixSuffixRoots");
 
       this.setState({
@@ -115,15 +120,14 @@ class App extends Component {
         console.log(prefixSuffixRoot);
         break;
       case "verbos":
-      let verbos;
       if (this.state.verbos) {
         verbos = [...this.state.verbos];
         console.log(verbos);
       } else {
         this.handleLoadPalabras();
-        this.handleLoadRandomVerbo();
+        this.handleLoadRandomPalabra();
       }
-      let verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
+      verbo = shuffle.pick(verbos, [{ 'copy': true }, { 'picks': 1 }]);
 
       this.setState({
         verbo
@@ -132,7 +136,20 @@ class App extends Component {
       console.log(verbo);
         break;
       default:
-
+      if (this.state.fourLetterWords) {
+        fourLetterWords = [...this.state.fourLetterWords];
+        console.log(fourLetterWords);
+      } else {
+        this.handleLoadPalabras();
+        this.handleLoadRandomPalabra();
+      }
+      fourLetterWord = shuffle.pick(fourLetterWords, [{ 'copy': true }, { 'picks': 1 }]);
+      this.setState({
+        fourLetterWord
+      })
+      localStorage.setItem("fourLetterWord", JSON.stringify(fourLetterWord));
+      console.log(fourLetterWord);
+        break;
     }
   }
 
@@ -168,7 +185,7 @@ class App extends Component {
       console.log(findPalabra);
       if (findPalabra === undefined) {
         let err = { errorMessage: "Word NOT Found!" };
-        return;
+        return err;
       } else if (findPalabra.hasOwnProperty('_id')){
           palabra = await apiCalls.getPalabra(p, findPalabra);
       }
@@ -264,17 +281,26 @@ class App extends Component {
     const palabras = this.state[params].map(param => (param._id === updatedPalabra._id) ? { ...param, ...updatedPalabra } : param)
     switch (params) {
       case "fourLetterWords":
-        this.setState({ fourLetterWord: updatedPalabra });
+        this.setState({
+          fourLetterWord: updatedPalabra,
+          fourLetterWords: palabras
+      });
         break;
       case "prefixSuffixRoots":
-        this.setState({ prefixSuffixRoot: updatedPalabra });
+        this.setState({
+          prefixSuffixRoot: updatedPalabra,
+          prefixSuffixRoots: palabras
+      });
         break;
       case "verbos":
-        this.setState({ verbo: updatedPalabra });
+        this.setState({
+          verbo: updatedPalabra,
+          verbos: palabras
+      });
         break;
       default:
     }
-     console.log(params, updatedPalabra);
+     console.log(params, updatedPalabra, params);
   }
 
   async handleDeletePalabra() {
@@ -285,10 +311,10 @@ class App extends Component {
     let params = pathname.slice(7) + "s";
     console.log(pathname);
     console.log(typeof pathname);
-    if (params == "four-letter-words") {
+    if (params === "four-letter-words") {
       params = "fourLetterWords";
       console.log(params);
-    } else if (params == "prefix-suffix-roots") {
+    } else if (params === "prefix-suffix-roots") {
       params = "prefixSuffixRoots";
       console.log(params);
     }
@@ -361,12 +387,7 @@ class App extends Component {
     } else {
       this.handleAddPalabra(p, pObj);
     }
-    this.handleRedirect(p, pObj);
     //route to new palabra after this.addPalabra is finished or form if errors
-  }
-
-  handleRedirect=(p, pObj) => {
-    <Redirect push to="/" />
   }
 
   async handleAuth(user) {
@@ -399,27 +420,12 @@ class App extends Component {
   }
 
   handleCreateGame(){
-    let winning_word = this.state.fourLetterWord;
-    console.log(Object.keys(winning_word));
-    if (Object.keys(winning_word).length === 0) {
-      this.handleLoadRandomPalabra();
-      winning_word = this.state.fourLetterWord;
-    }
+    let winning_word;
+    this.handleLoadRandomPalabra();
 
     console.log(winning_word);
     let user;
-    // if () {
-    //   this.handleLoadRandomFourLetterWord();
-    //   this.handleCreateGame();
-    //   console.log("empty");
-    // } else {
-    //   winning_word = [...this.state.fourLetterWord];
-    //   console.log("obj");
-    // }
-    // if (this.state.user) {
-    //   user = [...this.state.user];
-    //   console.log("obj");
-    // }
+
     let game = {
       attempts: 0,
       bulls: 0,
@@ -432,9 +438,7 @@ class App extends Component {
       word_to_consider_for_library: []
     }
     this.setState({ game });
-    this.props.history.push('/games/four-letter-word');
-    // let game
-    console.log(user, winning_word);
+    console.log(game, user, winning_word);
   }
 
   render() {
