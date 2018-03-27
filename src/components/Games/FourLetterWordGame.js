@@ -75,18 +75,19 @@ class FourLetterWordGame extends Component {
   handleChange(e){
 
     let game = [...this.state.game];
+    console.log(game);
 
 
     this.setState({
       [e.target.name]: e.target.value
     });
     console.log(this.state);
-    console.log(game);
   }
   handleSubmit(e){
     e.preventDefault();
     this.handleUpdateGame();
     let p = this.state.p;
+    console.log(this.state.game);
 
     let { ...game } = { ...this.state.game };
     console.log(p, game);

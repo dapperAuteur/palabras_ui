@@ -397,7 +397,11 @@ class App extends Component {
     bulls = 0;
     cows = 0;
     console.log(guess);
+    guess = guesses.slice(-1);
+    guess = guess[0].toLowerCase();
+    console.log(guess);
     let word = winning_word.word;
+    console.log(word);
     let currentGuess = this.state.fourLetterWords.filter(word => word.word === guess);
     console.log(currentGuess);
     if (currentGuess.length === 0) {
