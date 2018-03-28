@@ -4,6 +4,7 @@ import shuffle from 'shuffle-array';
 import * as apiCalls from './../actions/api';
 import * as authCalls from './../actions/authApi';
 import AuthForm from './../components/Forms/AuthForm';
+import GameStatus from './../components/Games/GameStatus';
 import Main from './Main';
 import NavBar from './../components/NavBar';
 import './App.css';
@@ -461,7 +462,9 @@ class App extends Component {
   }
 
   render() {
-    const { showLoginForm, showSignUpForm, user } = this.state;
+    const { game, showLoginForm, showSignUpForm, user } = this.state;
+    console.log(this.props);
+    let p = this.props.location.pathname;
     return (
       <div className="App">
         <NavBar
@@ -501,6 +504,7 @@ class App extends Component {
             /> :
             null
         }
+        { p === "/games/four-letter-word" && <GameStatus game={ game }/> }
         <Main
           props={ this.state }
           onCheckFourLetterWord = { this.handleCheckFourLetterWord }

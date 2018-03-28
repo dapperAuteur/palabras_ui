@@ -15,106 +15,66 @@ const NavBar = (props) => {
   return (
     <nav className='navbar navbar-default'>
       <div className='container-fluid'>
-        <div className='navbar-header'>
-            <span className="words">
-              <Link
-                to={ '/' }
-                className="">
-                Palabras
-              </Link>
-              <Link
-                to={ '/words/find-palabra'}
-                className="">
-                Find Palabra
-              </Link>
-              <Link
-                to={ '/words/random-palabras'}
-                className="">
-                Details Palabra
-              </Link>
-              <Link
-                to={{
-                  pathname: '/games/four-letter-word',
-                  hash: '#fourLetterWords',
-                  state: { p: 'fourLetterWords/' }
-                }}
-                onClick={ onCreateGame }
-                >
-                FourLetterWordGame
-              </Link>
-            </span>
-            <span className="random-word">
-              <button className='btn  btn-default'>Words</button>
-              <Link
-               to={{
-                 pathname: '/words/four-letter-word',
-                 hash: '#fourLetterWords',
-                 state: { p: 'fourLetterWords/' }
-               }}
-               className="menu-item">
-               Four Letter Word
-              </Link>
-              <Link
-               to={{
-                 pathname: '/words/prefix-suffix-root',
-                 hash: '#prefixSuffixRoots',
-                 state: { p: 'prefixSuffixRoots/' }
-               }}
-               className="menu-item">
-               Prefix Suffix Root
-             </Link>
-             <Link
-               to={{
-                 pathname: '/words/verbo',
-                 hash: '#verbos',
-                 state: { p: 'verbos/' }
-               }}
-               className="menu-item">
-               Verbo
-             </Link>
-            </span>
-            <span className="create-word">
-              <button className='btn  btn-default'>Create</button>
-              <Link
-               to={ '/words/new/four-letter-word' }
-               id="newFourLetterWords"
-               className="menu-item">
-               Create Four Letter Word
-              </Link>
-              <Link
-               to={ '/words/new/prefix-suffix-root' }
-               id="newPrefixSuffixRoots"
-               className="menu-item">
-               Create Prefix Suffix Root
-             </Link>
-             <Link
-               to={ '/words/new/verbo' }
-               id="newVerbos"
-               className="menu-item">
-               Create Verbo
-             </Link>
-            </span>
-            <span className="games">
-              <button className='btn  btn-default'>Games</button>
-              <Link
-                to={ '/games/four-letter-words' }
-                id="fourLetterWordGames"
-                className="menu-item">
-                Four Letter Word Games
-              </Link>
-              <Link
-                to={ 'games/prefix-suffix-roots' }
-                id="prefixSuffixRootGames"
-                className="menu-item">
-                Prefix Suffix Root Games
-              </Link>
-              <Link
-                to={ 'games/verbos' }
-                id="verboGames"
-                className="menu-item">
-                Verbo Games
-              </Link>
-            </span>
+        <div id="palabras-dropdown1">
+          <Link
+            to={ '/' }
+            className="btn btn-default">
+            Palabras
+          </Link>
+          <div id="palabras-content2">
+            <Link
+              to={ '/words/find-palabra'}
+              className="btn btn-default">
+              Find Palabra
+            </Link>
+            <Link
+              to={{
+                pathname: '/games/four-letter-word',
+                hash: '#fourLetterWords',
+                state: { p: 'fourLetterWords/' }
+              }}
+              onClick={ onCreateGame }
+              className="btn btn-default"
+              >
+              FourLetterWordGame
+            </Link>
+          </div>
+        </div>
+        <div id="palabras-dropdown3">
+          <Link
+            to={ '/' }
+            className="btn btn-default">
+            Word Lists
+          </Link>
+          <div id="palabras-content4">
+            <Link
+             to={{
+               pathname: '/words/four-letter-word',
+               hash: '#fourLetterWords',
+               state: { p: 'fourLetterWords/' }
+             }}
+             className="menu-item btn btn-default">
+             Four Letter Word
+            </Link>
+            <Link
+             to={{
+               pathname: '/words/prefix-suffix-root',
+               hash: '#prefixSuffixRoots',
+               state: { p: 'prefixSuffixRoots/' }
+             }}
+             className="menu-item btn btn-default">
+             Prefix Suffix Root
+           </Link>
+           <Link
+             to={{
+               pathname: '/words/verbo',
+               hash: '#verbos',
+               state: { p: 'verbos/' }
+             }}
+             className="menu-item btn btn-default">
+             Verbo
+           </Link>
+          </div>
         </div>
         <div className="user-token">
           { user.token ?

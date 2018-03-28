@@ -35,8 +35,7 @@ class FourLetterWordGame extends Component {
   }
 
   componentWillMount(){
-    console.log(this.props.game.winning_word);
-    if (!this.props.game.winning_word) return null;
+    console.log(this.props);
   }
 
   async handleUpdateGame(){
@@ -99,7 +98,8 @@ class FourLetterWordGame extends Component {
   }
 
   render() {
-    const { letter0, letter1,letter2, letter3, letters } = this.state;
+    const { game, letter0, letter1,letter2, letter3, letters } = this.state;
+    console.log(game);
 
 
     return (

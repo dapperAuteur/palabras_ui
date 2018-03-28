@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 import './GameStatus.css';
 
 const GameStatus = (props) => {
+  console.log(props);
   const { game } = { ...props };
-  let { bulls, cows, guesses, userId, score, winning_word, won, word_to_consider_for_library } = { ...game };
+  let { attempts, bulls, cows, guess, guesses, message, name, score, winning_word, won, word_to_consider_for_library } = { ...game };
+  console.log(game);
 
   return (
     <div className="gameStatus">
+      <span className="gameStat">Message: { message }</span>
       <span className="gameStat">Points { score }</span>
-      <span className="gameStat">Guesses { guesses.length }</span>
+      <span className="gameStat">Guesses { attempts }</span>
       <span className="gameStat">Cows { cows }</span>
       <span className="gameStat">Bulls { bulls }</span>
     </div>
@@ -31,10 +34,10 @@ GameStatus.propTypes = {
 
 GameStatus.defaultProps = {
   game: {
-    bulls: 1,
-    cows: 1,
+    bulls: 0,
+    cows: 0,
     guesses: ["full", "acme", "tool"],
-    score: 5000,
+    score: 0,
     won: false,
     word_to_consider_for_library: []
   }

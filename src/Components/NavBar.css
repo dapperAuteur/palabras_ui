@@ -1,72 +1,104 @@
-li {
-  list-style: none;
-  text-decoration: none;
-  padding-left: 30px;
-}
-
-.btn {
-  height: 2.5em;
-  padding: 10px 10px 25px 10px;
-  border-radius: 8px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
-
-
-.navbar { /* parent of all including single child .container-fluid; no siblings */
-  display: flex;
-  align-self: flex-start;
-  padding: 35px 50px 0;
-  flex: 1 1 100%;
-  border: solid;
-}
-
-.container-fluid { /* parent of .user-token & .navbar-header; child of .navbar navbar-default */
+.dropdown {
   display: flex;
   justify-content: space-between;
-  flex: 0 0 100%;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  max-width: 200px;
+  max-height: 3.2em;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  transition: max-height 400ms ease-in-out;
 }
 
+.dropdown.open {
+  max-height: 10em;
+}
 
-.navbar-header { /* sibling to .user-token; child of .container-fluid; parent of .random-word, .games, and .words; grandparent of .menu-item */
+.dropdown.open .drop-head {
+  border-bottom: 1px solid #fff;
+}
+
+.drop-head {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 0px solid #fff;
+  transition-delay: 0ms;
+}
+
+.drop-head.delay {
+  transition-delay: 300ms;
+}
+
+.drop-head Link {
+  flex-basis: 100%;
+}
+
+.drop-head, .content {
+  padding: 0em 1em;
+}
+
+.dropdown .arrow-wrap .arrow {
+  border-top: 0.4em solid transparent;
+  border-bottom: 0.4em solid transparent;
+  border-left: 0.6em solid #fff;
+  curser: pointer;
+  transition: transform 200ms ease-in-out;
+}
+
+.dropdown.open .arrow-wrap .arrow {
+  transform: rotate(90deg);
+}
+
+.dropdown .content {
+  flex-basis: 100%;
+  height: 0em;
+  max-height: 0em;
+  overflow: hidden;
+  transition: max-height 400ms ease-in-out, height 400ms ease-in-out;
+}
+
+.dropdown.open .content {
+  height: 15em;
+  max-height: 15em;
+}
+
+.container-fluid {
   display: flex;
   justify-content: space-around;
-  align-self: flex-start;
-  max-width: 800px;
-  flex: 2 2 66.67%;
+  align-items: space-between;
+  max-width: 600px;
 }
 
-.random-word .games {
-  align-self: flex-start;
-  justify-content: space-around;
-  flex: 0 0 100%;
+.navbar-header {
+  max-width: 600px;
 }
 
-.menu-item { /* child of .random-word; cousin of .menu-item */
-  display: flex;
-  text-decoration: none;
-  color: white;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.palabras-dropdown {
 }
 
-.menu-item:hover {
-  display: flex;
+.palabras-dropdown:hover .palabras-content {
+  visibility: visible;
 }
 
-.user-token { /* sibling to .navbar-header; child of .container-fluid; parent of .nav */
-  display: flex;
-  align-self: flex-end;
-  align-items: flex-end;
-  flex: 3 3 33.33%;
+#palabras-dropdown1 {
 }
 
-.nav { /* child of .user-token, there are two */
-  display: flex;
-  align-self: flex-end;
+#palabras-content2 {
+  visibility: hidden;
 }
 
-@media (max-width: 800px){
+#palabras-dropdown1:hover #palabras-content2 {
+  visibility: visible;
+}
 
+#palabras-dropdown3 {
+}
+
+#palabras-content4 {
+  visibility: hidden;
+}
+
+#palabras-dropdown3:hover #palabras-content4 {
+  visibility: visible;
 }
